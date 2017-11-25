@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Users for Skill</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="panel-group" style="margin-top: 40px">
+
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="/admin/home">iFreeDays - Vacations Manager</a>
+					</div>
+					<ul class="nav navbar-nav">
+						<li><a href="/admin/home">Home</a></li>
+						<li class="active"><a href="/skills">List of skills</a></li>
+						<li><a href="/employees">List of employees</a></li>
+						<li><a href="/logout">Logout</a></li>
+					</ul>
+				</div>
+			</nav>
+			<div class="panel-group" style="margin-top: 40px">
+				<h2>
+					Users with skill <b th:utext="${skill.name}"></b>
+				</h2>
+				<table class="table table-bordered" id="myTable">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Name</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr data-th-each="user : ${users}" class="clickable-row">
+							<td data-th-text="${user.id}" />
+							<td data-th-text="${user.name}" />
+							<td>borrar</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="footer">
+				<form th:action="@{users/}" method="get" id="form-skill-users">
+					<button class="btn btn-md btn-danger btn-block" type="Submit"
+						disabled="disabled" id="buttonUsers">Users</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	$('#myTable').on(
+			'click',
+			'.clickable-row',
+			function(event) {
+				$(this).addClass('active').siblings().removeClass('active');
+				$('#form-skill-users').attr(
+						'action',
+						'users/'
+								+ $($('#myTable .active')[0]).find("td:first")
+										.text());
+				$('#buttonUsers').removeAttr('disabled');
+			});
+</script>
+</html>
