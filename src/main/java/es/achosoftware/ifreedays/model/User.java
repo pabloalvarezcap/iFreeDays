@@ -48,12 +48,13 @@ public class User {
 	@Column(name = "active")
 	private int active;
 	@OneToMany(cascade = CascadeType.MERGE)
-	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private Set<Role> roles;
 	@OneToMany(cascade = CascadeType.MERGE)
 	@JoinTable(name = "user_skill", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "skill_id"))
 	private Set<Skill> skills;
 
+	
 	public int getId() {
 		return id;
 	}

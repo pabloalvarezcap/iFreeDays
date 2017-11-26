@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Calendar Skills Page</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="panel-group" style="margin-top: 40px">
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="">iFreeDays - Vacations Admin</a>
+					</div>
+					<ul class="nav navbar-nav">
+						<li><a href="/admin/home">Home</a></li>
+						<li><a href="/skills">List of skills</a></li>
+						<li><a href="/admin/employees">List of employees</a></li>
+						<li class="active"><a href="/calendars/skills">Skills calendar view</a></li>
+						<li><a href="/calendars/employees">Employees calendar view</a></li>
+						<li><a href="/logout">Logout</a></li>
+					</ul>
+				</div>
+			</nav>
+
+			<div class="panel panel-primary">
+				<div class="text-center">
+					<div class="btn-group">
+						<button class="btn btn-primary" data-calendar-nav="prev" onclick="redirect('prev');">&lt;&lt; Prev</button>
+						<span class="btn" data-th-text="${dateString}"></span>
+						<button class="btn btn-primary" data-calendar-nav="next" onclick="redirect('next');">Next &gt;&gt;</button>
+					</div>
+				</div>
+				<br/>
+				<table class="table table-bordered" id="calendar">
+					<thead>
+						<tr>
+							<th>Skill</th>
+							<th:block data-th-each="day : ${daysOfMonth}" th:switch="${#dates.dayOfWeek(#dates.create(year, month, day))}" th:with="dayName=${#dates.dayOfWeekName(#dates.create(year, month, day))}">
+								<th th:case="5" data-th-text="${day}" class="bg-success"/>
+								<th th:case="6" data-th-text="${day}" class="bg-success"/>
+								<th th:case="*" data-th-text="${day}" class="bg-primary"/>
+							</th:block>
+						</tr>
+					</thead>
+					<tbody class="table-bordered">
+						<tr data-th-each="cal : ${calendars}">
+							<td data-th-text="${cal.skillName}" class="bg-primary"></td>
+							<th:block data-th-each="month : ${cal.month}" th:switch="${month.state}">
+								<td th:case="0" class="bg-success"/>
+								<td th:case="1" class="bg-info"/>
+								<td th:case="2" class="bg-warning"/>
+								<td th:case="-1" class="bg-danger"/>
+							</th:block>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+	<form>
+		<input type="hidden" th:value="${next}" id="next">
+		<input type="hidden" th:value="${prev}" id="prev">
+	</form>
+</body>
+<script type="text/javascript">
+function redirect(where) {
+	var yearMonth = '';
+	if (where == 'prev') 
+		yearMonth = $('#prev').val();
+	else
+		yearMonth = $('#next').val();
+	window.location ='/calendars/skills/' + yearMonth;
+}
+</script>
+</html>

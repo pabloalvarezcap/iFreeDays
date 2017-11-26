@@ -19,7 +19,7 @@ public class SkillController {
 	private UserService userService;
 
 	@RequestMapping(value =  "/skills", method = RequestMethod.GET)
-	public ModelAndView login() {
+	public ModelAndView listSkills() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("skills/list");
 		modelAndView.addObject("skills", skillService.listSkills());

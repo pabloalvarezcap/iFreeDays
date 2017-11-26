@@ -16,16 +16,21 @@ CREATE TABLE IF NOT EXISTS role (
 CREATE TABLE IF NOT EXISTS user_role (
   user_id INTEGER NOT NULL,
   role_id INTEGER NOT NULL,
-  PRIMARY KEY (user_id,role_id),
+  PRIMARY KEY (role_id, user_id)
 );
 
 CREATE TABLE IF NOT EXISTS user_skill (
 	user_id INTEGER NOT NULL,
  	skill_id INTEGER NOT NULL,
-	PRIMARY KEY (user_id,skill_id),
+	PRIMARY KEY (user_id,skill_id)
 );
 CREATE TABLE IF NOT EXISTS skill (
  	skill_id INTEGER NOT NULL,
 	name varchar(20) NOT NULL,
-	PRIMARY KEY (skill_id),
+	PRIMARY KEY (skill_id)
+);
+CREATE TABLE IF NOT EXISTS vacation (
+ 	user_id INTEGER NOT NULL,
+	day date NOT NULL,
+	PRIMARY KEY (user_id, day)
 );

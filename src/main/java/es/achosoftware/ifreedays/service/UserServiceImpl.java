@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 	public void saveUser(User user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(1);
-        Role userRole = roleRepository.findByRole("ADMIN");
+        Role userRole = roleRepository.findByRole("USER");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
 		userRepository.save(user);
 	}
@@ -40,6 +40,18 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> listUsersWithSkill(Integer id) {
 		return userRepository.findBySkills(id);
+	}
+
+	@Override
+	public List<User> listUsers() {
+		return userRepository.findAll();
+	}
+
+	@Override
+	public void delete(Integer id) {
+		User user = userRepository.findById(id);
+		user.setActive(0);
+		userRepository.save(user);
 	}
 
 }
