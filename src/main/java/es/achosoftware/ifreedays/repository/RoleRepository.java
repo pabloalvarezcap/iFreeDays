@@ -7,6 +7,6 @@ import es.achosoftware.ifreedays.model.Role;
 
 @Repository("roleRepository")
 public interface RoleRepository extends JpaRepository<Role, Integer> {
-	Role findByRole(String role);
+	Role findByName(String name);
 	Role findById(int id);
 }

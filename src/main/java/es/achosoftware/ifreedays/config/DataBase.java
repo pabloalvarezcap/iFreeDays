@@ -3,6 +3,7 @@ package es.achosoftware.ifreedays.config;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
@@ -53,14 +54,17 @@ public class DataBase {
 
     @PostConstruct
 	public void initialize() {
+    	Set<Role> roles = new HashSet<>();
 		Role role = new Role();
 		role.setId(1);
-		role.setRole("ADMIN");
+		role.setName("ADMIN");
 		roleRepository.save(role);
+		roles.add(role);
 		role = new Role();
 		role.setId(2);
-		role.setRole("USER");
+		role.setName("USER");
 		roleRepository.save(role);
+		roles.add(role);
 		Set<Skill> skills = new HashSet<>();
 		Skill skill = new Skill();
 		skill.setId(1);
@@ -70,13 +74,13 @@ public class DataBase {
 		skill = new Skill();
 		skill.setId(2);
 		skill.setName("ISC");
-		skills.add(skill);
 		skillRepository.save(skill);
+		skills.add(skill);
 		User user = new User();
 		user.setActive(1);
 		user.setName("Nombre");
 		user.setSkills(skills);
-		user.setRoles(new HashSet<>(Arrays.asList(role)));
+		user.setRoles(roles);
 		user.setEmail("email@hotmail.com");
 		user.setLastName("apellido");
 		user.setPassword(bCryptPasswordEncoder.encode("12345"));
@@ -84,6 +88,9 @@ public class DataBase {
 		user = new User();
 		user.setActive(1);
 		user.setName("Nombre2");
+		skill = new Skill();
+		skill.setId(2);
+		skill.setName("ISC");
 		user.setSkills(new HashSet<>(Arrays.asList(skill)));
 		user.setRoles(new HashSet<>(Arrays.asList(role)));
 		user.setEmail("email2@hotmail.com");
@@ -96,6 +103,10 @@ public class DataBase {
 		cal.set(2017, 11, 11);
 		vacation.setDay(cal.getTime());
 		vacationRepository.save(vacation);
+		List<User> users = userRepository.findAll();
+		for (User u : users) {
+			System.out.println(u);
+		}
 	}
 	
     @Bean
