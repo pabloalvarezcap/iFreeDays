@@ -1,3 +1,6 @@
 *.classpath
 target/*
 /target/
+src/resources/application.properties
+.project
+
