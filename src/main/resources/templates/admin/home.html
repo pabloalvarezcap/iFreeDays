@@ -22,10 +22,10 @@
     			
     			<div class="collapse navbar-collapse" id="basicExampleNav">
 		        	<ul class="navbar-nav mr-auto">
-			            <li class="nav-item"><a class="nav-link" href="/admin/home">Home</a></li>
+			            <li class="nav-item active"><a class="nav-link" href="/admin/home">Home</a></li>
 						<li class="nav-item"><a class="nav-link" href="/skills">List of skills</a></li>
 						<li class="nav-item"><a class="nav-link" href="/admin/employees">List of employees</a></li>
-						<li class="nav-item active"><a class="nav-link" href="/calendars/skills">Skills calendar view</a></li>
+						<li class="nav-item"><a class="nav-link" href="/calendars/skills">Skills calendar view</a></li>
 						<li class="nav-item"><a class="nav-link" href="/calendars/employees">Employees calendar view</a></li>
 						<li class="nav-item"><a class="nav-link" href="/user/requestVacation">Request vacation</a></li>
 	        		</ul>
@@ -39,7 +39,7 @@
 				<div class="panel-heading">
 					<span th:utext="${userName}"></span>
 				</div>
-				<div class="panel-body">
+				<div class="panel-body" style="text-align:center">
 					<img th:src="@{/images/beer.jpg}"
 						class="img-responsive center-block" width="400" height="400"
 						alt="Beer" />
