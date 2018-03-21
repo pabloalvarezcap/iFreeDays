@@ -9,13 +9,24 @@
     <link href="/css/mdb.min.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
 <!--     <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script> -->
-    
-    
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <style>
+    table.table a {
+	    padding: .2rem 0.8rem;
+}
+.w-auto {
+    width: auto;
+}
 
-<body>
-<style>.table>tbody>tr.active>td,.table>tbody>tr.active>th,.table>tbody>tr>td.active,.table>tbody>tr>th.active,.table>tfoot>tr.active>td,.table>tfoot>tr.active>th,.table>tfoot>tr>td.active,.table>tfoot>tr>th.active,.table>thead>tr.active>td,.table>thead>tr.active>th,.table>thead>tr>td.active,.table>thead>tr>th.active {
+.table-fixed {
+    table-layout: fixed;
+    overflow: hidden;
+}
+
+    </style>
+    
+    <style>
+
+.table>tbody>tr.active>td,.table>tbody>tr.active>th,.table>tbody>tr>td.active,.table>tbody>tr>th.active,.table>tfoot>tr.active>td,.table>tfoot>tr.active>th,.table>tfoot>tr>td.active,.table>tfoot>tr>th.active,.table>thead>tr.active>td,.table>thead>tr.active>th,.table>thead>tr>td.active,.table>thead>tr>th.active {
     background-color: #f5f5f5
 }
 
@@ -23,6 +34,11 @@
     background-color: #e8e8e8
 }
 </style>
+    
+<!-- <link rel="stylesheet" href="https://maxcdn.1bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<body>
 	<div class="container">
 		<div class="panel-group" style="margin-top: 80px">
 
@@ -51,7 +67,7 @@
 			<div class="panel-group" style="margin-top: 40px">
 			
 			
-				<table class="table table-bordered" id="myTable">
+				<table class="table table-responsive-md table-fixed" id="myTable">
 					<thead>
 						<tr>
 							<th>ID</th>
