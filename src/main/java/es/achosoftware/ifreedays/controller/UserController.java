@@ -51,7 +51,7 @@ public class UserController {
 		modelAndView.setViewName("employees/list");
 		modelAndView.addObject("skills", new ArrayList());
 		modelAndView.addObject("employees", userService.listUsers());
-		modelAndView.addObject("msg", "OK");
+		modelAndView.addObject("msg", "The user " + user.getName() + ", " + user.getLastName() + " has been deleted.");
 		return modelAndView;
 	}
 	
@@ -67,7 +67,7 @@ public class UserController {
 		modelAndView.setViewName("redirect:/admin/employees/skills/" + user.getId());
 		modelAndView.addObject("skills", skills);
 		modelAndView.addObject("employees", userService.listUsers());
-		modelAndView.addObject("msg", "OK");
+		modelAndView.addObject("msg", "The skill " + skillService.findSkillById(skillId).getName()  + " has been deleted.");
 		return modelAndView;
 	}
 
@@ -85,8 +85,10 @@ public class UserController {
 		if (skills.size() == 0) {
 			skills = null;
 		}
-		if (! msg.equals(""))
-			modelAndView.addObject("msg", "OK");
+		if (!msg.equals(""))
+			modelAndView.addObject("msg", msg);
+		else
+			modelAndView.addObject("msg", null);
 		modelAndView.addObject("skills", skills);
 		modelAndView.addObject("user", user);
 		return modelAndView;

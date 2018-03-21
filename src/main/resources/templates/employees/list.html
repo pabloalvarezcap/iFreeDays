@@ -95,7 +95,10 @@
 					</tbody>
 				</table>
 
-				<p th:text="${msg}"></p>
+	<blockquote th:if="${msg} != null" class="blockquote bq-success">
+    	<p class="bq-title">Success notification</p>
+    	<p th:text="${msg}"></p>
+	</blockquote>
 			</div>
 		</div>
 	</div>
