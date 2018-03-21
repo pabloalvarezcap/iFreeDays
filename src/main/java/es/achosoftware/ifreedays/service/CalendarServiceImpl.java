@@ -23,7 +23,7 @@ public class CalendarServiceImpl implements CalendarService {
 	@Override
 	public List<Vacation> calendarForSkill(int skillId) {
 		List<Vacation> vacations = vacationRepository.findBySkills(skillId);
-		vacations.forEach(o -> o.setSkillId(skillId));
+//		vacations.forEach(o -> o.setSkillId(skillId));
 		return vacations;
 	}
 
@@ -31,7 +31,7 @@ public class CalendarServiceImpl implements CalendarService {
 	public MonthCalendar calendarForSkillAndDate(Skill skill, int month, int year) {
 		List<Vacation> vacations = vacationRepository.findBySkills(skill.getId(), month, year);
 		List<User> users = userRepository.findBySkills(skill.getId());
-		vacations.forEach(o -> o.setSkillId(skill.getId()));
+//		vacations.forEach(o -> o.setSkillId(skill.getId()));
 		return new MonthCalendar(year, month, users.size(), vacations, skill);
 	}
 

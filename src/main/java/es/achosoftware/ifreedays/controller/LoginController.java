@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,6 +24,19 @@ public class LoginController {
 	@RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
 	public ModelAndView login() {
 		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth.getName() != "anonymousUser") {
+			if (auth.isAuthenticated()) {
+				User user = userService.findUserByEmail(auth.getName());
+				if (user.isAdmin()) {
+					modelAndView.setViewName("redirect:admin/home");
+					return modelAndView;
+				} else {
+					modelAndView.setViewName("redirect:user/home");
+					return modelAndView;
+				}
+			}
+		}
 		modelAndView.setViewName("login");
 		return modelAndView;
 	}
@@ -44,6 +58,7 @@ public class LoginController {
 			bindingResult.rejectValue("email", "error.user",
 					"There is already a user registered with the email provided");
 		}
+		
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("registration");
 		} else {
@@ -51,9 +66,19 @@ public class LoginController {
 			modelAndView.addObject("successMessage", "User has been registered successfully");
 			modelAndView.addObject("user", new User());
 			modelAndView.setViewName("registration");
-
 		}
+		
 		return modelAndView;
+	}
+
+	@GetMapping("/checkType")
+	public String checkType() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		if (user.isAdmin())
+			return "redirect:admin/home";
+		else
+			return "redirect:user/home";
 	}
 
 	@RequestMapping(value = "/admin/home", method = RequestMethod.GET)

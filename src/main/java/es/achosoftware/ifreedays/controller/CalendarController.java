@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,8 +19,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import es.achosoftware.ifreedays.model.MonthCalendar;
 import es.achosoftware.ifreedays.model.Skill;
+import es.achosoftware.ifreedays.model.User;
 import es.achosoftware.ifreedays.service.CalendarService;
 import es.achosoftware.ifreedays.service.SkillService;
+import es.achosoftware.ifreedays.service.UserService;
 
 @Controller
 public class CalendarController {
@@ -27,6 +31,8 @@ public class CalendarController {
 	private SkillService skillService;
 	@Autowired
 	private CalendarService calendarService;
+	@Autowired
+	private UserService userService;
 	private static final DateFormat df = new SimpleDateFormat("MMMM yyyy", Locale.US);
 	
 	@RequestMapping(value =  "/calendars/skills", method = RequestMethod.GET)
@@ -67,6 +73,9 @@ public class CalendarController {
 		modelAndView.addObject("prev", cal.get(Calendar.YEAR) + "/" + (cal.get(Calendar.MONTH) + 1));
 		cal.add(Calendar.MONTH, 2);
 		modelAndView.addObject("next", cal.get(Calendar.YEAR) + "/" + (cal.get(Calendar.MONTH) + 1));
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		modelAndView.addObject("isAdmin", user.isAdmin());
 		return modelAndView;
 	}
 

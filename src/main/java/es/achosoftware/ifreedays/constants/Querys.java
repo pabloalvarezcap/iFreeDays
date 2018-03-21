@@ -17,4 +17,6 @@ public class Querys {
 	public static final String FIND_CALENDAR_BY_SKILL_AND_DATE_ORDER_BY_DAY_ASC = VACATIONS_FOR_SKILL
 			+ " and MONTH(v.day) = :month" + " and YEAR(v.day) = :year" + ORDER_BY_V_DAY_ASC;
 
+	public static final String FIND_VACATIONS_BY_USER_ID = "select * from vacation v where v.user_id = :userId";
+
 }

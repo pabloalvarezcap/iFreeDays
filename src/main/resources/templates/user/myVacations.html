@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Request Vacations</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/mdb.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="container">
+		<div class="panel-group" style="margin-top: 40px">
+			<nav class="navbar navbar-dark primary-color fixed-top navbar-expand-md">
+    			<a th:if="${isAdmin}" class="navbar-brand" href="/admin/home">iFreeDays - Vacations Admin</a>
+				<a th:unless="${isAdmin}" class="navbar-brand" href="/user/home">iFreeDays - Vacations Manager</a>
+    			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+		        	<span class="navbar-toggler-icon"></span>
+    			</button>
+    			
+    			<div class="collapse navbar-collapse" id="basicExampleNav">
+		        	<ul class="navbar-nav mr-auto">
+			            <li class="nav-item" th:if="${isAdmin}"><a class="nav-link" href="/admin/home">Home</a></li>
+						<li class="nav-item" th:unless="${isAdmin}"><a class="nav-link" href="/user/home">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="/skills">List of skills</a></li>
+						<li class="nav-item" th:if="${isAdmin}"><a class="nav-link" href="/admin/employees">List of employees</a></li>
+						<li class="nav-item"><a class="nav-link" href="/calendars/skills">Skills calendar view</a></li>
+						<li class="nav-item" th:if="${isAdmin}"><a class="nav-link" href="/calendars/employees">Employees calendar view</a></li>
+						<li class="nav-item"><a class="nav-link" href="/user/requestVacation">Request vacation</a></li>
+						<li class="nav-item"><a class="nav-link" href="/user/myVacations">My vacations</a></li>
+	        		</ul>
+        			<ul class="navbar-nav ml-auto">
+	        			<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+	        		</ul>
+    			</div>
+			</nav>
+
+			<div class="panel panel-primary"  style="margin-top: 90px">
+				<div class="panel-heading">
+				
+				
+				
+				
+				
+				
+				
+				<table class="table table-bordered" style="text-align:center; margin: 0 auto; position: relative;" id="calendar">
+<!-- 					<thead> -->
+<!-- 						<tr> -->
+<!-- 							<th>Month</th> -->
+<!-- 							<th data-th-text="${calendar.getmonth()}" class="bg-primary"/> -->
+<!-- 							<th:block data-th-each="day : ${calendar.getDays()}" th:switch="${day.getIsVacation()}"> -->
+<!-- 								<th th:case="true" data-th-text="${day}" class="bg-success"/> -->
+<!-- 								<th th:case="false" data-th-text="${day}" class="bg-primary"/> -->
+<!-- 							</th:block> -->
+<!-- 						</tr> -->
+<!-- 					</thead> -->
+<!-- 					<tbody class="table-bordered"> -->
+<!-- 						<tr data-th-each="cal : ${calendar}"> -->
+<!-- 							<td data-th-text="${cal.skillName}" class="btn btn-block bg-primary"></td> -->
+<!-- 							<th:block data-th-each="month : ${cal.month}" th:switch="${month.state}"> -->
+<!-- 								<td th:case="0" class="bg-success"  data-th-text="${month.getN()}" /> -->
+<!-- 								<td th:case="1" class="bg-info"  data-th-text="${month.getN()}" /> -->
+<!-- 								<td th:case="2" class="bg-danger"  data-th-text="${month.getN()}" /> -->
+<!-- 								<td th:case="3" class="bg-warning" data-th-text="${month.getN()}" /> -->
+<!-- 								<td th:case="-1" class="bg-danger"  data-th-text="${month.getN()}" /> -->
+<!-- 							</th:block> -->
+<!-- 						</tr> -->
+<!-- 					</tbody> -->
+
+<tbody class="table-bordered">
+						
+						<th:block th:each="month: ${monthList}">
+						<tr>
+							<td data-th-text="${month.getMonthForInt(month.getMonth())}" class="btn btn-block bg-primary"></td>
+							<th:block data-th-each="day : ${month.getDays()}" th:switch="${day.getIsVacation()}">
+								<td th:case="false" class="bg-info"  data-th-text="${day.getDay()}" />
+								<td th:case="true" class="bg-success"  data-th-text="${day.getDay()}" />
+							</th:block>
+						</tr>
+						</th:block>
+						
+					</tbody>
+					
+				</table>
+				
+				
+				
+				
+				
+				
+			</div>
+		</div>
+
+	</div>
+	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    	<script type="text/javascript" src="js/popper.min.js"></script>
+    	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+    	<script type="text/javascript" src="js/mdb.min.js"></script>
+</body>
+</html>

@@ -1,6 +1,7 @@
 package es.achosoftware.ifreedays.model;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -55,6 +56,12 @@ public class User {
 	@JoinTable(name = "user_skill", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "skill_id"))
 	private Set<Skill> skills;
 
+	public Boolean isAdmin() {
+		Boolean b = this.getRoles().stream().filter(role -> role.getName().equals("ADMIN")).collect(Collectors.toList()).size() > 0;
+		System.err.println(b);
+		return b;
+	}
+	
 	public int getId() {
 		return id;
 	}

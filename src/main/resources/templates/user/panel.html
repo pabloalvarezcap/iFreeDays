@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Vacations Manager</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/mdb.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="container">
+		<div class="panel-group" style="margin-top: 40px">
+			<nav class="navbar navbar-dark primary-color fixed-top navbar-expand-md">
+    			<a th:if="${isAdmin}" class="navbar-brand" href="/admin/home">iFreeDays - Vacations Admin</a>
+				<a th:unless="${isAdmin}" class="navbar-brand" href="/user/home">iFreeDays - Vacations Manager</a>
+    			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+		        	<span class="navbar-toggler-icon"></span>
+    			</button>
+    			
+    			<div class="collapse navbar-collapse" id="basicExampleNav">
+		        	<ul class="navbar-nav mr-auto">
+			            <li class="nav-item" th:if="${isAdmin}"><a class="nav-link" href="/admin/home">Home</a></li>
+						<li class="nav-item" th:unless="${isAdmin}"><a class="nav-link" href="/user/home">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="/skills">List of skills</a></li>
+						<li class="nav-item" th:if="${isAdmin}"><a class="nav-link" href="/admin/employees">List of employees</a></li>
+						<li class="nav-item"><a class="nav-link" href="/calendars/skills">Skills calendar view</a></li>
+						<li class="nav-item" th:if="${isAdmin}"><a class="nav-link" href="/calendars/employees">Employees calendar view</a></li>
+						<li class="nav-item"><a class="nav-link" href="/user/requestVacation">Request vacation</a></li>
+	        		</ul>
+        			<ul class="navbar-nav ml-auto">
+	        			<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+	        		</ul>
+    			</div>
+			</nav>
+
+			<div class="panel panel-primary" style="margin-top: 80px">
+				<div class="panel-heading">
+					<span th:utext="${userName}"></span>
+				</div>
+				<div class="panel-body" style="text-align:center;" >
+					<img src="https://www.generadormemes.com/media/created/9cua2ggqxhmurpe767jewpqxny6cb1aiw463jieng9796gzwteo0pjqr6ed7gyi.jpg"
+						class="img-responsive center-block" width="400" height="400"
+						alt="Fenomeno" style="align:center"/>
+				</div>
+				<p class="admin-message-text text-center" th:utext="${userMessage}"></p>
+			</div>
+		</div>
+
+	</div>
+	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    	<script type="text/javascript" src="js/popper.min.js"></script>
+    	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+    	<script type="text/javascript" src="js/mdb.min.js"></script>
+</body>
+</html>

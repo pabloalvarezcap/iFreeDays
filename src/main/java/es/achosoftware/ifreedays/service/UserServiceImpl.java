@@ -50,8 +50,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void delete(Integer id) {
 		User user = userRepository.findById(id);
-		user.setActive(0);
-		userRepository.save(user);
+		userRepository.delete(user);
+//		user.setActive(0);
+//		userRepository.save(user);
+	}
+
+	@Override
+	public User findUserById(Integer id) {
+		return userRepository.findById(id); 
 	}
 
 }

@@ -20,5 +20,7 @@ public interface VacationRepository extends JpaRepository<Vacation, Integer> {
 	List<Vacation> findBySkills(@Param("skillId") Integer id);
 	@Query(nativeQuery = true, value = Querys.FIND_CALENDAR_BY_SKILL_AND_DATE_ORDER_BY_DAY_ASC)
 	List<Vacation> findBySkills(@Param("skillId") Integer id, @Param("month") Integer month, @Param("year") Integer year);
+	@Query(nativeQuery = true, value = Querys.FIND_VACATIONS_BY_USER_ID)
+	List<Vacation> findVacationsByUserId(@Param("userId") Integer id);
 
 }

@@ -4,30 +4,37 @@
 
 <head>
 <title>Users for Skill</title>
-<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/mdb.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 </head>
 
 <body>
 	<div class="container">
-		<div class="panel-group" style="margin-top: 40px">
+		<div class="panel-group" style="margin-top: 80px">
 
-			<nav class="navbar navbar-default">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<a class="navbar-brand" href="">iFreeDays - Vacations Admin</a>
-					</div>
-					<ul class="nav navbar-nav">
-						<li><a href="/admin/home">Home</a></li>
-						<li class="active"><a href="/skills">List of skills</a></li>
-						<li><a href="/admin/employees">List of employees</a></li>
-						<li><a href="/calendars/skillCalendar">Skills calendar view</a></li>
-						<li><a href="/calendars/employees">Employees calendar view</a></li>
-						<li><a href="/logout">Logout</a></li>
-					</ul>
-				</div>
+			<nav class="navbar navbar-dark primary-color fixed-top navbar-expand-md">
+    			<a th:if="${isAdmin}" class="navbar-brand" href="/admin/home">iFreeDays - Vacations Admin</a>
+				<a th:unless="${isAdmin}" class="navbar-brand" href="/user/home">iFreeDays - Vacations Manager</a>
+    			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+		        	<span class="navbar-toggler-icon"></span>
+    			</button>
+    			
+    			<div class="collapse navbar-collapse" id="basicExampleNav">
+		        	<ul class="navbar-nav mr-auto">
+			            <li class="nav-item" th:if="${isAdmin}"><a class="nav-link" href="/admin/home">Home</a></li>
+						<li class="nav-item" th:unless="${isAdmin}"><a class="nav-link" href="/user/home">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="/skills">List of skills</a></li>
+						<li class="nav-item" th:if="${isAdmin}"><a class="nav-link" href="/admin/employees">List of employees</a></li>
+						<li class="nav-item"><a class="nav-link" href="/calendars/skills">Skills calendar view</a></li>
+						<li class="nav-item" th:if="${isAdmin}"><a class="nav-link" href="/calendars/employees">Employees calendar view</a></li>
+						<li class="nav-item"><a class="nav-link" href="/user/requestVacation">Request vacation</a></li>
+	        		</ul>
+        			<ul class="navbar-nav ml-auto">
+	        			<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+	        		</ul>
+    			</div>
 			</nav>
 			<div class="panel-group" style="margin-top: 40px">
 				<h2>
@@ -45,7 +52,7 @@
 						<tr data-th-each="user : ${users}" class="clickable-row">
 							<td data-th-text="${user.id}" />
 							<td data-th-text="${user.name}" />
-							<td>borrar</td>
+							<td><a class="btn btn-danger btn-xs" role="button" th:href="'/admin/employees/delete/skill/?skillId=' + ${skill.getId()} + '&userId=' + ${user.getId()}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -58,6 +65,10 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    	<script type="text/javascript" src="js/popper.min.js"></script>
+    	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+    	<script type="text/javascript" src="js/mdb.min.js"></script>
 </body>
 <script type="text/javascript">
 	$('#myTable').on(

@@ -6,6 +6,7 @@ import es.achosoftware.ifreedays.model.User;
 
 public interface UserService {
 	public User findUserByEmail(String email);
+	public User findUserById(Integer id);
 	public void saveUser(User user);
 	public List<User> listUsersWithSkill(Integer id);
 	public List<User> listUsers();
