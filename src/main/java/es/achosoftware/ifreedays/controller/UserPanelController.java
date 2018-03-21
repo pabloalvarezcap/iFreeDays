@@ -133,8 +133,13 @@ public class UserPanelController {
 	}
 	
 	@GetMapping("/user/error")
-	public String errorTooManyVacations() {
-		return "user/error";
+	public ModelAndView errorTooManyVacations() {
+		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userRepository.findByEmail(auth.getName());
+		modelAndView.addObject("isAdmin", user.isAdmin());
+		modelAndView.setViewName("user/error");
+		return modelAndView;
 	}
 	
 	public List<Vacation> createVacation(LocalDate start, LocalDate end) {

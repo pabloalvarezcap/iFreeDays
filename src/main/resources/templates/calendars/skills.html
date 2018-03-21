@@ -26,7 +26,6 @@
 		<nav class="navbar navbar-dark primary-color fixed-top navbar-expand-md">
     			<a th:if="${isAdmin}" class="navbar-brand" href="/admin/home">iFreeDays - Vacations Admin</a>
 				<a th:unless="${isAdmin}" class="navbar-brand" href="/user/home">iFreeDays - Vacations Manager</a>
-
     			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
 		        	<span class="navbar-toggler-icon"></span>
     			</button>
@@ -40,6 +39,7 @@
 						<li class="nav-item"><a class="nav-link" href="/calendars/skills">Skills calendar view</a></li>
 						<li class="nav-item" th:if="${isAdmin}"><a class="nav-link" href="/calendars/employees">Employees calendar view</a></li>
 						<li class="nav-item"><a class="nav-link" href="/user/requestVacation">Request vacation</a></li>
+						<li class="nav-item"><a class="nav-link" href="/user/myVacations">My vacations</a></li>
 	        		</ul>
         			<ul class="navbar-nav ml-auto">
 	        			<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>

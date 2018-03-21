@@ -6,6 +6,8 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +32,9 @@ public class UserController {
 	@RequestMapping(value = "/admin/employees", method = RequestMethod.GET)
 	public ModelAndView listEmployees() {
 		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		modelAndView.addObject("isAdmin", user.isAdmin());
 		modelAndView.addObject("skills", new ArrayList());
 		modelAndView.setViewName("employees/list");
 		modelAndView.addObject("employees", userService.listUsers());
@@ -40,6 +45,9 @@ public class UserController {
 	public ModelAndView delete(@PathVariable("id") Integer id) {
 		userService.delete(id);
 		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		modelAndView.addObject("isAdmin", user.isAdmin());
 		modelAndView.setViewName("employees/list");
 		modelAndView.addObject("skills", new ArrayList());
 		modelAndView.addObject("employees", userService.listUsers());
@@ -54,6 +62,8 @@ public class UserController {
 		user.setSkills(skills);
 		userService.saveUser(user);
 		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		modelAndView.addObject("isAdmin", user.isAdmin());
 		modelAndView.setViewName("redirect:/admin/employees/skills/" + user.getId());
 		modelAndView.addObject("skills", skills);
 		modelAndView.addObject("employees", userService.listUsers());
@@ -68,6 +78,8 @@ public class UserController {
 		TreeSet<Skill> skills = new TreeSet<Skill>(userService.findUserById(id).getSkills());
 		User user = userService.findUserById(id);
 		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		modelAndView.addObject("isAdmin", user.isAdmin());
 		modelAndView.addObject("employees", userService.listUsers());
 		modelAndView.setViewName("employees/list");
 		if (skills.size() == 0) {
