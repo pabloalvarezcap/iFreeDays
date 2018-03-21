@@ -91,7 +91,7 @@
 					<tbody>
 						<tr data-th-each="skill : ${skills}">
 							<td data-th-text="${skill.getName()}" />
-							<td><a class="btn btn-danger btn-xs" role="button" th:href="'/admin/employees/delete/skill/?skillId=' + ${skill.getId()} + '&userId=' + ${user.getId()}"><span class="glyphicon glyphicon-trash"></span></a></td>
+							<td><a class="btn btn-danger btn-xs fa fa-trash-o"  role="button" th:href="'/admin/employees/delete/skill/?skillId=' + ${skill.getId()} + '&userId=' + ${user.getId()}"><span class="glyphicon glyphicon-trash"></span></a></td>
 					</tbody>
 				</table>
 
