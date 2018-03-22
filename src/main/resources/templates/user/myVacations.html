@@ -46,7 +46,7 @@
 				
 				
 				
-				<table class="table table-bordered" style="text-align:center; margin: 0 auto; position: relative;" id="calendar">
+				<table class="table table-bordered" style="text-align:center; margin-left: -13.443%; margin-top: -2.2%; position: absolute;" id="calendar">
 <!-- 					<thead> -->
 <!-- 						<tr> -->
 <!-- 							<th>Month</th> -->
@@ -73,7 +73,7 @@
 <tbody class="table-bordered">
 						
 						<th:block th:each="month: ${monthList}">
-						<tr>
+						<tr >
 							<td data-th-text="${month.getMonthForInt(month.getMonth())}" class="btn btn-block bg-primary"></td>
 							<th:block data-th-each="day : ${month.getDays()}" th:switch="${day.getIsVacation()}">
 								<td th:case="false" class="bg-info"  data-th-text="${day.getDay()}" />
