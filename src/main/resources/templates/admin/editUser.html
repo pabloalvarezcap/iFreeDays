@@ -49,52 +49,73 @@
 				</div>
 			</nav>
 
-			<div class="panel panel-primary" style="margin-top: 150px">
-				<form th:action="@{/admin/submitEditUser}" th:object="${user}"
-					method="post">
-					<div class="md-form">
-						<i class="fa fa-user prefix grey-text"></i> <input type="text"
-							id="materialFormSubscriptionNameEx" class="form-control"
-							th:value="${user.getName()}"> <label
-							for="materialFormSubscriptionNameEx">Name:</label>
-					</div>
-					<br />
-					<div class="md-form">
-						<i class="fa fa-user prefix grey-text"></i> <input type="text"
-							id="last" class="form-control" th:value="${user.getLastName()}">
-						<label for="last">Last name:</label>
-					</div>
-					<br />
-					<div class="md-form">
-						<i class="fa fa-user prefix grey-text"></i> <input type="text"
-							id="email" class="form-control" th:value="${user.getEmail()}">
-						<label for="email">Email:</label>
-					</div>
-					<br />
-					
+
+
+
+
+			<div class="card" style="margin-top: 10%">
+
+				    
+				<!-- Card body -->
+				    
+				<div class="card-body">
+
+					<form th:action="@{/admin/submitEditUser}" th:object="${user}"
+						method="post">
 						<div class="md-form">
-						<label
-								class="form-check-label" for="checkbox101">Filled-in
-								checkbox</label>
-						<i class="fa fa-user prefix grey-text"></i> 
-							<input style="float:left" type="checkbox" class="filled-in form-check-input"
-								id="checkbox101" checked="checked"> 
+							<i class="fa fa-user prefix grey-text"></i> <input type="text"
+								id="materialFormSubscriptionNameEx" th:field="*{name}"
+								class="form-control"> <label
+								for="materialFormSubscriptionNameEx">Name:</label>
+						</div>
+						<br />
+						<div class="md-form">
+							<i class="fa fa-user prefix grey-text"></i> <input type="text"
+								id="last" class="form-control" th:field="*{lastName}"> <label
+								for="last">Last name:</label>
+						</div>
+						<br />
+						<div class="md-form">
+							<i class="fa fa-user prefix grey-text"></i> <input type="text"
+								id="email" class="form-control" th:field="*{email}"> <label
+								for="email">Email:</label>
 						</div>
 
-					
-					<br />
-					<div class="md-form">
-						<i class="fa fa-user prefix grey-text"></i> <input type="text"
-							id="pass" class="form-control" th:value="${user.getLastName()}">
-						<label for="pass">Password:</label>
-					</div>
+
+						<div class="md-form" style="margin-left: 2.5rem">
+							<label class="form-check-label" for="checkbox101">Active</label><br />
+							<br /> <input style="float: left" type="checkbox"
+								th:field="*{active}" class="" id="checkbox101"
+								th:value="${user.getActive()}">
+						</div>
 
 
-				</form>
+						<br />
+						<div class="md-form">
+							<i class="fa fa-user prefix grey-text"></i> <input
+								type="password" id="pass" class="form-control"
+								th:field="*{password}" value=""> <label for="pass">Password:</label>
+						</div>
+						<div class="text-center mt-4">
+							<button class="btn btn-outline-info" type="submit">
+								Send<i class="fa fa-paper-plane-o ml-2"></i>
+							</button>
+
+							<button class="btn btn-outline-info" type="reset">
+								Reset<i class="fa fa-paper-plane-o ml-2"></i>
+							</button>
+						</div>
+					</form>
+					 
+				</div>
+
+
 			</div>
-		</div>
 
+		</div>
 	</div>
+
+
 	<script src="/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="/js/popper.min.js"></script>
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
