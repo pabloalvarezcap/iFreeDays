@@ -80,10 +80,18 @@
 <!-- 							<td data-th-text="${skill.id}" /> -->
 <!-- 							<td data-th-text="${skill.name}" /> -->
 <!-- 						</tr> -->
-							<tr th:each="i : ${#numbers.sequence( 0, skills.size()-1)}"  class="clickable-row">
+							<th:block th:each="i : ${#numbers.sequence( 0, skills.size()-1)}">
+							<tr th:if="${i%2==0}" class="table-info clickable-row">
+							
 								<td data-th-text="${skills.get(i).getId()}" />
 	 							<td data-th-text="${skills.get(i).getName()}" />
-							</tr>
+	 							</tr>
+	 							
+	 							<tr th:unless="${i%2==0}" class="table-success clickable-row">
+								<td data-th-text="${skills.get(i).getId()}" />
+	 							<td data-th-text="${skills.get(i).getName()}" />
+	 							</tr>
+							</th:block>
 					</tbody>
 				</table>
 			</div>
