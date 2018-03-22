@@ -30,12 +30,16 @@ public class UserController {
 	private SkillService skillService;
 
 	@RequestMapping(value = "/admin/employees", method = RequestMethod.GET)
-	public ModelAndView listEmployees() {
+	public ModelAndView listEmployees(@RequestParam(name="msg", required=false, defaultValue="") String msg) {
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
 		modelAndView.addObject("isAdmin", user.isAdmin());
 		modelAndView.addObject("skills", new ArrayList());
+		if (!msg.equals(""))
+			modelAndView.addObject("msg", msg);
+		else
+			modelAndView.addObject("msg", null);
 		modelAndView.setViewName("employees/list");
 		modelAndView.addObject("employees", userService.listUsers());
 		return modelAndView;
@@ -48,10 +52,11 @@ public class UserController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
 		modelAndView.addObject("isAdmin", user.isAdmin());
-		modelAndView.setViewName("employees/list");
+//		modelAndView.setViewName("employees/list");
+		modelAndView.setViewName("redirect:/admin/employees/");
 		modelAndView.addObject("skills", new ArrayList());
 		modelAndView.addObject("employees", userService.listUsers());
-		modelAndView.addObject("msg", "The user " + user.getName() + ", " + user.getLastName() + " has been deleted.");
+		modelAndView.addObject("msg", "The user «" + user.getName() + ", " + user.getLastName() + "» has been deleted.");
 		return modelAndView;
 	}
 	
@@ -67,7 +72,7 @@ public class UserController {
 		modelAndView.setViewName("redirect:/admin/employees/skills/" + user.getId());
 		modelAndView.addObject("skills", skills);
 		modelAndView.addObject("employees", userService.listUsers());
-		modelAndView.addObject("msg", "The skill " + skillService.findSkillById(skillId).getName()  + " has been deleted.");
+		modelAndView.addObject("msg", "The skill «" + skillService.findSkillById(skillId).getName()  + "» has been deleted.");
 		return modelAndView;
 	}
 
