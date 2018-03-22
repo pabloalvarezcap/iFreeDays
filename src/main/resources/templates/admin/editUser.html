@@ -49,6 +49,7 @@
 				</div>
 			</nav>
 
+<<<<<<< HEAD
 
 
 
@@ -62,6 +63,35 @@
 
 					<form th:action="@{/admin/submitEditUser}" th:object="${user}"
 						method="post">
+=======
+			<div class="panel panel-primary" style="margin-top: 150px">
+			
+			<div class="card">
+
+		    <div class="card-body">
+				<form th:action="@{/admin/submitEditUser}" th:object="${user}"
+					method="post">
+					<div class="md-form">
+						<i class="fa fa-user prefix grey-text"></i> <input type="text"
+							id="materialFormSubscriptionNameEx" class="form-control"
+							th:value="${user.getName()}"> <label
+							for="materialFormSubscriptionNameEx">Name:</label>
+					</div>
+					<br />
+					<div class="md-form">
+						<i class="fa fa-user prefix grey-text"></i> <input type="text"
+							id="last" class="form-control" th:value="${user.getLastName()}">
+						<label for="last">Last name:</label>
+					</div>
+					<br />
+					<div class="md-form">
+						<i class="fa fa-user prefix grey-text"></i> <input type="text"
+							id="email" class="form-control" th:value="${user.getEmail()}">
+						<label for="email">Email:</label>
+					</div>
+					<br />
+					
+>>>>>>> 1b6bc517f9ba9c17976dfb9df74be6a3813aafc0
 						<div class="md-form">
 							<i class="fa fa-user prefix grey-text"></i> <input type="text"
 								id="materialFormSubscriptionNameEx" th:field="*{name}"
@@ -111,6 +141,12 @@
 
 
 			</div>
+<<<<<<< HEAD
+=======
+		</div>
+		</div>
+		</div>
+>>>>>>> 1b6bc517f9ba9c17976dfb9df74be6a3813aafc0
 
 		</div>
 	</div>
