@@ -1,6 +1,7 @@
 *.classpath
 target/*
 /target/
-src/main/resources/application.properties
 .project
+/src/main/resources/application.properties
+./src/main/resources/application.properties
 .settigns
