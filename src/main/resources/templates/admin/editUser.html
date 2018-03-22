@@ -50,9 +50,9 @@
 				</div>
 			</nav>
 
-<div class="panel panel-primary" style="margin-top: 150px">
+<div class="panel panel-primary" style="margin-top: 10%">
 			
-			<div class="card">
+			<div class="card  z-depth-3">
 
 		    <div class="card-body">
 				<form th:action="@{/admin/submitEditUser}" th:object="${user}"
@@ -65,39 +65,40 @@
 						</div>
 						<br />
 						<div class="md-form">
-							<i class="fa fa-user prefix grey-text"></i> <input type="text"
+							<i class="fa fa-group prefix grey-text" aria-hidden="true"></i> <input type="text"
 								id="last" class="form-control" th:field="*{lastName}"> <label
 								for="last">Last name:</label>
 						</div>
 						<br />
 						<div class="md-form">
-							<i class="fa fa-user prefix grey-text"></i> <input type="text"
+							<i class="fa fa-envelope-o prefix grey-text" aria-hidden="true"></i> <input type="text"
 								id="email" class="form-control" th:field="*{email}"> <label
 								for="email">Email:</label>
 						</div>
 
 
-						<div class="md-form" style="margin-left: 2.5rem">
-							<label class="form-check-label" for="checkbox101">Active</label><br />
-							<br /> <input style="float: left" type="checkbox"
+						<div class="md-form" >
+						<i class="fa fa-hotel prefix grey-text" aria-hidden="true"></i>
+							<label class="form-check-label" style="float: right" for="checkbox101">Active</label><br />
+							<br /> 
+						</div><input style="margin-left:5%" type="checkbox"
 								th:field="*{active}" class="" id="checkbox101"
 								th:value="${user.getActive()}">
-						</div>
 
 
 						<br />
 						<div class="md-form">
-							<i class="fa fa-user prefix grey-text"></i> <input
+							<i class="fa fa-lock prefix grey-text"></i> <input
 								type="password" id="pass" class="form-control"
 								th:field="*{password}" value=""> <label for="pass">Password:</label>
 						</div>
 						<div class="text-center mt-4">
-							<button class="btn btn-outline-info" type="submit">
+							<button class="btn btn-outline-info  z-depth-2" type="submit">
 								Send<i class="fa fa-paper-plane-o ml-2"></i>
 							</button>
 
-							<button class="btn btn-outline-info" type="reset">
-								Reset<i class="fa fa-paper-plane-o ml-2"></i>
+							<button class="btn btn-outline-info  z-depth-2" type="reset">
+								Reset<i class="fa fa-refresh  ml-2" aria-hidden="true"></i> 
 							</button>
 						</div>
 					</form>
