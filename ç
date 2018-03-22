@@ -1,0 +1,7 @@
+*.classpath
+target/*
+/target/
+.project
+/src/main/resources/application.properties
+./src/main/resources/application.properties
+.settigns
