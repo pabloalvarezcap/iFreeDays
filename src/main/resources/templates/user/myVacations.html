@@ -37,41 +37,14 @@
 	        		</ul>
     			</div>
 			</nav>
+	</div>
+	</div>
+	
+	<div class="panel panel-primary"  style="margin-top: 90px">
+				<div class="panel-heading">		
+				<table class="table table-bordered" id="calendar">
 
-			<div class="panel panel-primary"  style="margin-top: 90px">
-				<div class="panel-heading">
-				
-				
-				
-				
-				
-				
-				
-				<table class="table table-bordered" style="text-align:center; margin-left: -13.443%; margin-top: -2.2%; position: absolute;" id="calendar">
-<!-- 					<thead> -->
-<!-- 						<tr> -->
-<!-- 							<th>Month</th> -->
-<!-- 							<th data-th-text="${calendar.getmonth()}" class="bg-primary"/> -->
-<!-- 							<th:block data-th-each="day : ${calendar.getDays()}" th:switch="${day.getIsVacation()}"> -->
-<!-- 								<th th:case="true" data-th-text="${day}" class="bg-success"/> -->
-<!-- 								<th th:case="false" data-th-text="${day}" class="bg-primary"/> -->
-<!-- 							</th:block> -->
-<!-- 						</tr> -->
-<!-- 					</thead> -->
-<!-- 					<tbody class="table-bordered"> -->
-<!-- 						<tr data-th-each="cal : ${calendar}"> -->
-<!-- 							<td data-th-text="${cal.skillName}" class="btn btn-block bg-primary"></td> -->
-<!-- 							<th:block data-th-each="month : ${cal.month}" th:switch="${month.state}"> -->
-<!-- 								<td th:case="0" class="bg-success"  data-th-text="${month.getN()}" /> -->
-<!-- 								<td th:case="1" class="bg-info"  data-th-text="${month.getN()}" /> -->
-<!-- 								<td th:case="2" class="bg-danger"  data-th-text="${month.getN()}" /> -->
-<!-- 								<td th:case="3" class="bg-warning" data-th-text="${month.getN()}" /> -->
-<!-- 								<td th:case="-1" class="bg-danger"  data-th-text="${month.getN()}" /> -->
-<!-- 							</th:block> -->
-<!-- 						</tr> -->
-<!-- 					</tbody> -->
-
-<tbody class="table-bordered">
+					<tbody class="table-bordered">
 						
 						<th:block th:each="month: ${monthList}">
 						<tr >
@@ -86,17 +59,9 @@
 					</tbody>
 					
 				</table>
-				
-				
-				
-				
-				
-				
 			</div>
 		</div>
-
-	</div>
-	</div>
+	
 	<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
     	<script type="text/javascript" src="/js/popper.min.js"></script>
     	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
