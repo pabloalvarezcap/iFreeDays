@@ -38,21 +38,22 @@
     			</div>
 			</nav>
 
-			<div class="panel panel-primary"  style="margin-top: 90px">
-				<div class="panel-heading">
-					<span th:utext="${userName}"></span>
-				</div>
-				<div class="md-form" style="margin-top: 20%">
+			<div class="panel panel-primary text-center"  style="margin-top: 17rem">
+				<div class="md-form card card-body z-depth-2 mt-4">
 					<form method="POST" action="/user/requestVacation">
 					<p>Input the start date:</p>
 					<input type="date" name="startDate"></input>
 					<br/>
 					<br/>
 					<p style="margin-top:20px">Input the end date:</p>
-					<input type="date" name="endDate"></input>
-					<br/>
-					<br/>
-					<input type="submit" value="Submit" class="btn btn-primary">
+					<input type="date" name="endDate"></input><br><br><br>
+							<button class="btn btn-outline-info  z-depth-2 waves-effect" type="submit">
+								Send<i class="fa fa-paper-plane-o ml-2"></i>
+							</button>
+
+							<button class="btn btn-outline-info  z-depth-2 waves-effect" type="reset">
+								Reset<i aria-hidden="true" class="fa fa-refresh  ml-2"></i> 
+							</button>
 					</form>
 				</div>
 				<div>

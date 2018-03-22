@@ -67,7 +67,7 @@
 						<tr>
 							<th>Skill</th>
 							<th:block data-th-each="day : ${daysOfMonth}" th:switch="${#dates.dayOfWeek(#dates.create(year, month, day))}" th:with="dayName=${#dates.dayOfWeekName(#dates.create(year, month, day))}">
-								<th th:case="5" data-th-text="${day}" class="bg-success"/>
+								<th th:case="5" data-th-text="${day}" class="bg-success "/>
 								<th th:case="6" data-th-text="${day}" class="bg-success"/>
 								<th th:case="*" data-th-text="${day}" class="bg-primary"/>
 							</th:block>
@@ -77,11 +77,11 @@
 						<tr data-th-each="cal : ${calendars}">
 							<td data-th-text="${cal.skillName}" class="btn btn-block bg-primary"></td>
 							<th:block data-th-each="month : ${cal.month}" th:switch="${month.state}">
-								<td th:case="0" class="bg-success"  data-th-text="${month.getN()}" />
-								<td th:case="1" class="bg-info"  data-th-text="${month.getN()}" />
-								<td th:case="2" class="bg-danger"  data-th-text="${month.getN()}" />
-								<td th:case="3" class="bg-warning" data-th-text="${month.getN()}" />
-								<td th:case="-1" class="bg-danger"  data-th-text="${month.getN()}" />
+								<td th:case="0" class="bg-success waves-effect"  data-th-text="${month.getN()}" />
+								<td th:case="1" class="bg-info waves-effect"  data-th-text="${month.getN()}" />
+								<td th:case="2" class="bg-danger waves-effect"  data-th-text="${month.getN()}" />
+								<td th:case="3" class="bg-warning waves-effect" data-th-text="${month.getN()}" />
+								<td th:case="-1" class="bg-danger waves-effect"  data-th-text="${month.getN()}" />
 							</th:block>
 						</tr>
 					</tbody>
