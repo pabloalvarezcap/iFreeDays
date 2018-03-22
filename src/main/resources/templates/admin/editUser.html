@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Admin Page</title>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/mdb.min.css" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="panel-group" style="margin-top: 40px">
+			<nav
+				class="navbar navbar-dark primary-color fixed-top navbar-expand-md">
+				<a th:if="${isAdmin}" class="navbar-brand" href="/admin/home">iFreeDays
+					- Vacations Admin</a> <a th:unless="${isAdmin}" class="navbar-brand"
+					href="/user/home">iFreeDays - Vacations Manager</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#basicExampleNav" aria-controls="basicExampleNav"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="basicExampleNav">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item" th:if="${isAdmin}"><a class="nav-link"
+							href="/admin/home">Home</a></li>
+						<li class="nav-item" th:unless="${isAdmin}"><a
+							class="nav-link" href="/user/home">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="/skills">List
+								of skills</a></li>
+						<li class="nav-item" th:if="${isAdmin}"><a class="nav-link"
+							href="/admin/employees">List of employees</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/calendars/skills">Skills calendar view</a></li>
+						<li class="nav-item" th:if="${isAdmin}"><a class="nav-link"
+							href="/calendars/employees">Employees calendar view</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/user/requestVacation">Request vacation</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/user/myVacations">My vacations</a></li>
+					</ul>
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+					</ul>
+				</div>
+			</nav>
+
+			<div class="panel panel-primary" style="margin-top: 150px">
+				<form th:action="@{/admin/submitEditUser}" th:object="${user}"
+					method="post">
+					<div class="md-form">
+						<i class="fa fa-user prefix grey-text"></i> <input type="text"
+							id="materialFormSubscriptionNameEx" class="form-control"
+							th:value="${user.getName()}"> <label
+							for="materialFormSubscriptionNameEx">Name:</label>
+					</div>
+					<br />
+					<div class="md-form">
+						<i class="fa fa-user prefix grey-text"></i> <input type="text"
+							id="last" class="form-control" th:value="${user.getLastName()}">
+						<label for="last">Last name:</label>
+					</div>
+					<br />
+					<div class="md-form">
+						<i class="fa fa-user prefix grey-text"></i> <input type="text"
+							id="email" class="form-control" th:value="${user.getEmail()}">
+						<label for="email">Email:</label>
+					</div>
+					<br />
+					
+						<div class="md-form">
+						<label
+								class="form-check-label" for="checkbox101">Filled-in
+								checkbox</label>
+						<i class="fa fa-user prefix grey-text"></i> 
+							<input style="float:left" type="checkbox" class="filled-in form-check-input"
+								id="checkbox101" checked="checked"> 
+						</div>
+
+					
+					<br />
+					<div class="md-form">
+						<i class="fa fa-user prefix grey-text"></i> <input type="text"
+							id="pass" class="form-control" th:value="${user.getLastName()}">
+						<label for="pass">Password:</label>
+					</div>
+
+
+				</form>
+			</div>
+		</div>
+
+	</div>
+	<script src="/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="/js/popper.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/mdb.min.js"></script>
+</body>
+</html>
