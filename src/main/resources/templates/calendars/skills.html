@@ -5,7 +5,7 @@
 <head>
 <title>Calendar Skills Page</title>
 <!-- <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" /> -->
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->ç
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 
 <!-- Esto de abajo, al estar comentado no dejaba funcionar los botones para navegar entre meses -->
 <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
@@ -51,11 +51,13 @@
 		</div>
 
 	</div>
+
 	<div class="card card-body z-depth-3">	
 					<div class="panel panel-primary" style="margin-top: 1rem; text-align:center">
+
 			
 			<div style="text-align:center">
-				<div class="text-center" style="margin-top: 90px">
+				<div class="text-center">
 					<div class="btn-group">
 						<button class="btn btn-primary" data-calendar-nav="prev" onclick="redirect('prev');">&lt;&lt; Prev</button>
 						<span class="btn btn-outline-primary waves-effect" data-th-text="${dateString}"></span>
@@ -68,7 +70,7 @@
 						<tr>
 							<th>Skill</th>
 							<th:block data-th-each="day : ${daysOfMonth}" th:switch="${#dates.dayOfWeek(#dates.create(year, month, day))}" th:with="dayName=${#dates.dayOfWeekName(#dates.create(year, month, day))}">
-								<th th:case="5" data-th-text="${day}" class="bg-success"/>
+								<th th:case="5" data-th-text="${day}" class="bg-success "/>
 								<th th:case="6" data-th-text="${day}" class="bg-success"/>
 								<th th:case="*" data-th-text="${day}" class="bg-primary"/>
 							</th:block>
@@ -78,11 +80,11 @@
 						<tr data-th-each="cal : ${calendars}">
 							<td data-th-text="${cal.skillName}" class="btn btn-block bg-primary"></td>
 							<th:block data-th-each="month : ${cal.month}" th:switch="${month.state}">
-								<td th:case="0" class="bg-success"  data-th-text="${month.getN()}" />
-								<td th:case="1" class="bg-info"  data-th-text="${month.getN()}" />
-								<td th:case="2" class="bg-danger"  data-th-text="${month.getN()}" />
-								<td th:case="3" class="bg-warning" data-th-text="${month.getN()}" />
-								<td th:case="-1" class="bg-danger"  data-th-text="${month.getN()}" />
+								<td th:case="0" class="bg-success waves-effect"  data-th-text="${month.getN()}" />
+								<td th:case="1" class="bg-info waves-effect"  data-th-text="${month.getN()}" />
+								<td th:case="2" class="bg-danger waves-effect"  data-th-text="${month.getN()}" />
+								<td th:case="3" class="bg-warning waves-effect" data-th-text="${month.getN()}" />
+								<td th:case="-1" class="bg-danger waves-effect"  data-th-text="${month.getN()}" />
 							</th:block>
 						</tr>
 					</tbody>
