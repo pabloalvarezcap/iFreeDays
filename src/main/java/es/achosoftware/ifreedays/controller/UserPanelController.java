@@ -89,8 +89,8 @@ public class UserPanelController {
         modelAndView.addObject("monthList", monthVacationCalendarList);
         modelAndView.setViewName("user/myVacations");
         modelAndView.addObject("dateString", Integer.toString(_year));
-		modelAndView.addObject("prev", Integer.toString(_year-1));
-		modelAndView.addObject("next", Integer.toString(_year+1));
+		modelAndView.addObject("prev", "?year="+Integer.toString(_year-1));
+		modelAndView.addObject("next", "?year="+ Integer.toString(_year+1));
         
         
         return modelAndView;
