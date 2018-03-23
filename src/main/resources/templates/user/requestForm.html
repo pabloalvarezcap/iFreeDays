@@ -64,13 +64,13 @@
 
 					</form>
 					<blockquote id="msg" style="display:none" class="blockquote bq-danger">
-    	<p class="bq-title">Success notification</p>
+    	<p class="bq-title">Failure notification</p>
     	<p>Invalid dates!</p>
 	</blockquote> 
 					
 				</div>
 				<div>
-				<p id="operatC"style="display:none" th:text="${message}"></p>
+				<p id="operatC" th:text="${message}"></p>
 				</div>
 			</div>
 		</div>
@@ -97,7 +97,7 @@
 
     		 }
     		
-    			 document.getElementById("operatC").style = "display:block";
+    			 
     		return true;
     		 
     		
