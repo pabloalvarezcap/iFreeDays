@@ -42,7 +42,7 @@ public class UserDetailsController {
         	monthVacationCalendarList.add(new MonthVacationCalendar(_year, x, vacations));
         }
         modelAndView.addObject("user",user);
-        modelAndView.addObject("isAdmin", user.isAdmin());
+        modelAndView.addObject("isAdmin", true);
         modelAndView.addObject("name", user.getName()+" "+user.getLastName());
         modelAndView.addObject("monthList", monthVacationCalendarList);
         modelAndView.setViewName("admin/usersVacations");
