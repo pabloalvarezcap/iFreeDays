@@ -41,10 +41,11 @@ public class UserDetailsController {
         for (int x = 0; x<=11; ++x) {
         	monthVacationCalendarList.add(new MonthVacationCalendar(_year, x, vacations));
         }
-        
+        modelAndView.addObject("user",user);
         modelAndView.addObject("isAdmin", user.isAdmin());
+        modelAndView.addObject("name", user.getName()+" "+user.getLastName());
         modelAndView.addObject("monthList", monthVacationCalendarList);
-        modelAndView.setViewName("user/myVacations");
+        modelAndView.setViewName("admin/usersVacations");
         modelAndView.addObject("dateString", Integer.toString(_year));
 
 		modelAndView.addObject("prev", "?year=" + Integer.toString(_year-1));
