@@ -29,13 +29,11 @@ public class LoginController {
 			User user = userService.findUserByEmail(auth.getName());
 			if (user.isAdmin()) {
 				modelAndView.setViewName("redirect:admin/home");
-				return modelAndView;
 			} else {
 				modelAndView.setViewName("redirect:user/home");
-				return modelAndView;
 			}
-		}
-		modelAndView.setViewName("login");
+		} else
+			modelAndView.setViewName("login");
 		return modelAndView;
 	}
 
