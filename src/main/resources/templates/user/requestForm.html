@@ -47,13 +47,13 @@
 				<br/>
 				<div class="md-form" style="text-align:center">
 
-					<form method="POST" action="/user/requestVacation">
+					<form method="POST" action="/user/requestVacation" onsubmit="return validateForm()">
 					<p>Input the start date:</p>
-					<input type="date" name="startDate"></input>
+					<input id="startDate" type="date" name="startDate"></input>
 					<br/>
 					<br/>
 					<p style="margin-top:20px">Input the end date:</p>
-					<input type="date" name="endDate"></input><br><br><br>
+					<input id="endDate" type="date" name="endDate"></input><br><br><br>
 							<button class="btn btn-outline-info  z-depth-2 waves-effect" type="submit">
 								Send<i class="fa fa-paper-plane-o ml-2"></i>
 							</button>
@@ -63,6 +63,11 @@
 							</button>
 
 					</form>
+					<blockquote id="msg" style="display:none" class="blockquote bq-danger">
+    	<p class="bq-title">Success notification</p>
+    	<p>Invalid dates!</p>
+	</blockquote> 
+					
 				</div>
 				<div>
 				<p th:text="${message}"></p>
@@ -75,6 +80,27 @@
     	<script type="text/javascript" src="/js/popper.min.js"></script>
     	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
     	<script type="text/javascript" src="/js/mdb.min.js"></script>
+    	<script>
+    	function validateForm(){
+    		var siOno = true;
+    		var hoy = Date.now();
+    		
+    		 var d = new Date(document.getElementById("startDate").value);
+    		 var d1 = new Date(document.getElementById("endDate").value);
+    		 
+    		 if(hoy<d.getTime() || hoy<d1.getTime() || d1.getTime()<d.getTime()){
+    			 
+    			 document.getElementById("msg").style = "display:block";
+    			 return false;
+    		 }
+    		
+    		
+    		return siOno;
+    		
+    		
+    	}
+    	
+    	</script>
     	
 </body>
 </html>
