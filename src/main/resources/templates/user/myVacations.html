@@ -41,13 +41,15 @@
 	</div>
 	
 	<div class="panel panel-primary"  style="margin-top: 10rem">
-	<div class="text-center">
+	<div style="text-align:center">
+				<div class="text-center">
 					<div class="btn-group">
 						<button class="btn btn-primary" data-calendar-nav="prev" onclick="redirect('prev');">&lt;&lt; Prev</button>
 						<span class="btn btn-outline-primary waves-effect" data-th-text="${dateString}"></span>
 						<button class="btn btn-primary" data-calendar-nav="next" onclick="redirect('next');">Next &gt;&gt;</button>
 					</div>
 				</div>
+	</div>
 				<br/>
 				<div class="panel-heading">		
 				
@@ -82,7 +84,7 @@
 		yearMonth = $('#prev').val();
 	else
 		yearMonth = $('#next').val();
-	window.location ='/user/myVacations/' + yearMonth;
+	window.location ='/user/myVacations' + yearMonth;
 }
 </script>
 </body>
