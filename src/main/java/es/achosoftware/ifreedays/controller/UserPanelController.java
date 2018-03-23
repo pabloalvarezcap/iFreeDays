@@ -33,7 +33,6 @@ public class UserPanelController {
 	@Autowired
 	private UserRepository userRepository;
 	private final String year = new Integer(LocalDate.now().get(ChronoField.YEAR)).toString();
-	private final String month = new Integer(LocalDate.now().get(ChronoField.MONTH_OF_YEAR)).toString();
 	
 	@RequestMapping("/user/home")
 	public ModelAndView home() {
@@ -68,10 +67,12 @@ public class UserPanelController {
 		List<Vacation> vacations = vacationRepository.findVacationsByUserId(user.getId());
 		return vacations;
 	}
+	
 	@GetMapping("/user/myVacations")
 	public ModelAndView myVacations(@RequestParam(name = "year", required = false, defaultValue = "CHANGE ME") String year) {
-		if (year.equals("CHANGE ME"))
+		if (year.equals("CHANGE ME")) {
 			year = this.year;
+		}
 		int _year = Integer.parseInt(year);
 		ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

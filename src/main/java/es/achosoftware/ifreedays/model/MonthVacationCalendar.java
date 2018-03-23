@@ -25,7 +25,7 @@ public class MonthVacationCalendar {
 
 		int firstDay = cal.getActualMinimum(Calendar.DAY_OF_MONTH);
 		int lastDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-		this.vacations = calculateDays(vacations, month);
+		this.vacations = calculateDays(vacations, month, year);
 		
 		for (int day = firstDay; day <= lastDay; day++) {
 			if (isVacation(this.vacations, day)) {
@@ -37,11 +37,11 @@ public class MonthVacationCalendar {
 
 	}
 
-	private List<Vacation> calculateDays(List<Vacation> vacations, final int aux) {
+	private List<Vacation> calculateDays(List<Vacation> vacations, final int month, final int year) {
 		Calendar c = Calendar.getInstance();
 		return vacations.stream().filter(o -> {
 			c.setTime(o.getDay());
-			return c.get(Calendar.MONTH) == aux;
+			return c.get(Calendar.MONTH) == month && c.get(Calendar.YEAR) == year;
 		}).collect(Collectors.toList());
 	}
 
