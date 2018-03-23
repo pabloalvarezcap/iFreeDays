@@ -24,7 +24,7 @@ public class EditUserController {
 		User user = userService.findUserByEmail(auth.getName());
 		Boolean isAdmin = user.isAdmin();
 		User _user = userService.findUserById(_id);
-		System.out.println("\n\n\n\n\n TROLOROLROLROLROLROLRORLO");
+		
 		modelAndView.addObject("user", _user);
 		modelAndView.addObject("isAdmin", isAdmin);
 		modelAndView.setViewName("admin/editUser");
