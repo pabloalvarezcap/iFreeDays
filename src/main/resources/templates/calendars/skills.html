@@ -38,7 +38,7 @@
 						<li class="nav-item" th:unless="${isAdmin}"><a class="nav-link" href="/user/home">Home</a></li>
 						<li class="nav-item"><a class="nav-link" href="/skills">List of skills</a></li>
 						<li class="nav-item" th:if="${isAdmin}"><a class="nav-link" href="/admin/employees">List of employees</a></li>
-						<li class="nav-item"><a class="nav-link" href="/calendars/skills">Skills calendar view</a></li>
+						<li class="nav-item active"><a class="nav-link" href="/calendars/skills">Skills calendar view</a></li>
 						<li class="nav-item" th:if="${isAdmin}"><a class="nav-link" href="/calendars/employees">Employees calendar view</a></li>
 						<li class="nav-item"><a class="nav-link" href="/user/requestVacation">Request vacation</a></li>
 						<li class="nav-item"><a class="nav-link" href="/user/myVacations">My vacations</a></li>
@@ -51,7 +51,8 @@
 		</div>
 
 	</div>
-	<div class="panel panel-primary" style="margin-top: 90px; text-align:center" >
+	<div class="card card-body z-depth-3">	
+					<div class="panel panel-primary" style="margin-top: 1rem; text-align:center">
 			
 			<div style="text-align:center">
 				<div class="text-center" style="margin-top: 90px">
@@ -87,6 +88,7 @@
 					</tbody>
 				</table>
 			</div>
+		</div>
 		</div>
 	<form>
 		<input type="hidden" th:value="${next}" id="next">

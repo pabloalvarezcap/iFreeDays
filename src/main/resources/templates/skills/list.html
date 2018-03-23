@@ -40,7 +40,7 @@
 
 <body>
 	<div class="container">
-		<div class="panel-group" style="margin-top: 80px">
+		<div class="panel-group" style="margin-top: 10rem">
 
 <nav class="navbar navbar-dark primary-color fixed-top navbar-expand-md">
     			<a th:if="${isAdmin}" class="navbar-brand" href="/admin/home">iFreeDays - Vacations Admin</a>
@@ -65,7 +65,8 @@
 	        		</ul>
     			</div>
 			</nav>
-			<div class="panel-group" style="margin-top: 40px">
+			<div class="card card-body z-depth-3">	
+					<div class="panel panel-primary" style="margin-top: 1rem">
 			
 			
 				<table class="table table-responsive-md table-fixed table-striped" id="myTable">
@@ -95,6 +96,7 @@
 					</tbody>
 				</table>
 			</div>
+			
 			<div class="footer">
 				<form th:action="@{skills/users/}" method="get" id="form-skill-users">
 					<button class="btn btn-md btn-danger btn-block" type="Submit"
@@ -102,6 +104,7 @@
 				</form>
 			</div>
 		</div>
+	</div>
 	</div>
 	
 	<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>

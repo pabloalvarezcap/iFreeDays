@@ -41,6 +41,8 @@ public class UserPanelController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userRepository.findByEmail(auth.getName());
 		modelAndView.addObject("isAdmin", user.isAdmin());
+		modelAndView.addObject("userName",
+				"Welcome " + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
 		modelAndView.setViewName("user/panel");
 		modelAndView.addObject("userMessage", "Eres un fenómeno y lo sabes. 😁");
 		return modelAndView;
@@ -51,6 +53,8 @@ public class UserPanelController {
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userRepository.findByEmail(auth.getName());
+		modelAndView.addObject("userName",
+				"Choose your vacations " + user.getName() + " " + user.getLastName() +"!");
 		modelAndView.addObject("isAdmin", user.isAdmin());
 		modelAndView.setViewName("user/requestForm");
 		return modelAndView;
