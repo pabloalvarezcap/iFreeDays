@@ -4,7 +4,7 @@
 
 <head>
 <title>Request Vacations</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/mdb.min.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
@@ -13,7 +13,7 @@
 
 <body>
 	<div class="container">
-		<div class="panel-group" style="margin-top: 10rem">
+		<div class="panel-group" style="margin-top: 5rem">
 			<nav class="navbar navbar-dark primary-color fixed-top navbar-expand-md">
     			<a th:if="${isAdmin}" class="navbar-brand" href="/admin/home">iFreeDays - Vacations Admin</a>
 				<a th:unless="${isAdmin}" class="navbar-brand" href="/user/home">iFreeDays - Vacations Manager</a>
@@ -36,73 +36,60 @@
 	        		</ul>
     			</div>
 			</nav>
-
-
-			<div class="card card-body z-depth-3 mt-4">	
-					<div class="panel panel-primary md-form  text-center" style="margin-top: 1rem">
-				<div class="panel-heading" style="text-align:center">
-					<span th:utext="${userName}"></span>
+	</div>
+	</div>
+	
+	<div class="panel panel-primary"  style="margin-top: 2rem">
+	<div class="card card-body text-center " style="margin-bottom:.8rem"><p th:text="'You\'re watching '+${name} + '\'s vacations.'" ></p></div>
+	<div style="text-align:center">
+				<div class="text-center">
+					<div class="btn-group">
+						<button class="btn btn-primary" data-calendar-nav="prev" th:onclick="'redirect(\'prev\', ' + ${user.getId()} + ');'">&lt;&lt; Prev</button>
+						<span class="btn btn-outline-primary waves-effect" data-th-text="${dateString}"></span>
+						<button class="btn btn-primary" data-calendar-nav="next" th:onclick="'redirect(\'next\', ' + ${user.getId()} + ');'">Next &gt;&gt;</button>
+					</div>
 				</div>
+	</div>
 				<br/>
-				<div class="md-form" style="text-align:center">
+				<div class="panel-heading">		
+				
+				<table class="table table-bordered" id="calendar">
 
-					<form method="POST" action="/user/requestVacation" onsubmit="return validateForm()">
-					<p>Input the start date:</p>
-					<i class="fa fa-calendar mr-2" aria-hidden="true"></i><input id="startDate" type="date" name="startDate"></input>
-					<br/>
-					<br/>
-					<p style="margin-top:20px">Input the end date:</p>
-					<i class="fa fa-calendar mr-2" aria-hidden="true"></i><input id="endDate" type="date" name="endDate"></input><br><br><br>
-							<button class="btn btn-outline-info  z-depth-2 waves-effect" type="submit">
-								Send<i class="fa fa-paper-plane-o ml-2"></i>
-							</button>
-
-							<button class="btn btn-outline-info  z-depth-2 waves-effect" type="reset">
-								Reset<i aria-hidden="true" class="fa fa-refresh  ml-2"></i> 
-							</button>
-
-					</form>
-					<blockquote id="msg" style="display:none" class="blockquote bq-danger">
-    	<p class="bq-title">Failure notification</p>
-    	<p>Invalid dates!</p>
-	</blockquote> 
+					<tbody class="table-bordered">
+						
+						<th:block th:each="month: ${monthList}">
+						<tr >
+							<td data-th-text="${month.getMonthForInt(month.getMonth())}" class="btn btn-block bg-primary"></td>
+							<th:block data-th-each="day : ${month.getDays()}" th:switch="${day.getIsVacation()}">
+								<td th:case="false" class="bg-info"  data-th-text="${day.getDay()}" />
+								<td th:case="true" class="bg-success"  data-th-text="${day.getDay()}" />
+							</th:block>
+						</tr>
+						</th:block>
+						
+					</tbody>
 					
-				</div>
-				<div>
-				<p id="operatC" th:text="${message}"></p>
-				</div>
+				</table>
 			</div>
 		</div>
-</div>
-	</div>
+		<form>
+		<input type="hidden" th:value="${next}" id="next">
+		<input type="hidden" th:value="${prev}" id="prev">
+	</form>
+	
 	<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
     	<script type="text/javascript" src="/js/popper.min.js"></script>
     	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
     	<script type="text/javascript" src="/js/mdb.min.js"></script>
-    	<script>
-    	function validateForm(){
-
-    		var hoy = Date.now();
-
-    		
-    		 var d = new Date(document.getElementById("startDate").value);
-    		 var d1 = new Date(document.getElementById("endDate").value);
-
-    		 if(hoy>d.getTime() || hoy>d1.getTime() || d1.getTime()<d.getTime() || d == "Invalid Date" || d1 == "Invalid Date"){
-
-    			 document.getElementById("msg").style = "display:block";
-    			 
-    			 return false;
-
-    		 }
-    		
-    			 
-    		return true;
-    		 
-    		
-    	}
-    	
-    	</script>
-    	
+    	<script type="text/javascript">
+    	function redirect(where, id) {
+	var yearMonth = '';
+	if (where == 'prev') 
+		yearMonth = $('#prev').val();
+	else
+		yearMonth = $('#next').val();
+	window.location ='/admin/employees/details/' + id + yearMonth;
+}
+</script>
 </body>
 </html>
