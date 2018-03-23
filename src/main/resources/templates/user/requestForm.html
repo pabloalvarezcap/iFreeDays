@@ -82,22 +82,24 @@
     	<script type="text/javascript" src="/js/mdb.min.js"></script>
     	<script>
     	function validateForm(){
-    		
-    		
+
+    		var hoy = Date.now();
+
     		
     		 var d = new Date(document.getElementById("startDate").value);
     		 var d1 = new Date(document.getElementById("endDate").value);
-    		 
-    		 if(Date.now()>d.getTime() || Date.now()>d1.getTime() || d1.getTime()<d.getTime()){
-    			 
+
+    		 if(hoy>d.getTime() || hoy>d1.getTime() || d1.getTime()<d.getTime() || d == "Invalid Date" || d1 == "Invalid Date"){
+
     			 document.getElementById("msg").style = "display:block";
     			 
     			 return false;
-    		 }else{
+
+    		 }
     		
     			 document.getElementById("operatC").style = "display:block";
     		return true;
-    		 }
+    		 
     		
     	}
     	
