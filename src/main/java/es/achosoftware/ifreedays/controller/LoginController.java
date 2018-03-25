@@ -25,15 +25,19 @@ public class LoginController {
 	public ModelAndView login() {
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth.isAuthenticated()) {
-			User user = userService.findUserByEmail(auth.getName());
-			if (user.isAdmin()) {
-				modelAndView.setViewName("redirect:admin/home");
-			} else {
-				modelAndView.setViewName("redirect:user/home");
+		if (auth.getName() != "anonymousUser") {
+			if (auth.isAuthenticated()) {
+				User user = userService.findUserByEmail(auth.getName());
+				if (user.isAdmin()) {
+					modelAndView.setViewName("redirect:admin/home");
+					return modelAndView;
+				} else {
+					modelAndView.setViewName("redirect:user/home");
+					return modelAndView;
+				}
 			}
-		} else
-			modelAndView.setViewName("login");
+		}
+		modelAndView.setViewName("login");
 		return modelAndView;
 	}
 
@@ -54,7 +58,7 @@ public class LoginController {
 			bindingResult.rejectValue("email", "error.user",
 					"There is already a user registered with the email provided");
 		}
-
+		
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("registration");
 		} else {
@@ -63,7 +67,7 @@ public class LoginController {
 			modelAndView.addObject("user", new User());
 			modelAndView.setViewName("registration");
 		}
-
+		
 		return modelAndView;
 	}
 
