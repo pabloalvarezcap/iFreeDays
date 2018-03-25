@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import es.achosoftware.ifreedays.model.Skill;
 import es.achosoftware.ifreedays.model.User;
+import es.achosoftware.ifreedays.repository.UserRepository;
 import es.achosoftware.ifreedays.service.SkillService;
 import es.achosoftware.ifreedays.service.UserService;
 
@@ -26,6 +27,8 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private UserRepository userRepository;
 	@Autowired
 	private SkillService skillService;
 
@@ -63,12 +66,13 @@ public class UserController {
 	@RequestMapping(value = "/admin/employees/delete/skill/", method = RequestMethod.GET)
 	public ModelAndView deleteSkill(@RequestParam("skillId") Integer skillId, @RequestParam("userId") Integer userId) {
 		User user = userService.findUserById(userId);
-		Set<Skill> skills = user.getSkills().stream().filter(s -> s.getId() != skillId).collect(Collectors.toSet());
+		Set<Skill> skills = user.getSkills().parallelStream().filter(s -> s.getId() != skillId).collect(Collectors.toSet());
 		user.setSkills(skills);
-		userService.saveUser(user);
+		userRepository.save(user);
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		modelAndView.addObject("isAdmin", user.isAdmin());
+		User _user = userService.findUserByEmail(auth.getName());
+		modelAndView.addObject("isAdmin", _user.isAdmin());
 		modelAndView.setViewName("redirect:/admin/employees/skills/" + user.getId());
 		modelAndView.addObject("skills", skills);
 		modelAndView.addObject("employees", userService.listUsers());
