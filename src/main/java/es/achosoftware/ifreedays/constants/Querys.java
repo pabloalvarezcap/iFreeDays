@@ -31,5 +31,5 @@ public class Querys {
 	
 	public static final String FIND_CALENDAR_BY_SKILL_BY_PROJECT_ORDER_BY_DAY_ASC = VACATIONS_FOR_SKILL_AND_FOR_PROJECT + ORDER_BY_V_DAY_ASC;
 	
-	public static final String FIND_VACATIONS_BY_USER_ID_AND_BY_PROJECT_ID = "select * from vacation v" + "inner join user_projects up on (up.user_id = v.user_id)" + "where v.user_id = :userId AND up.project_id = :projectId";
+	public static final String FIND_VACATIONS_BY_USER_ID_AND_BY_PROJECT_ID = "select v.* from vacation v" + "inner join user_projects up on (up.user_id = v.user_id)" + "where v.user_id = :userId AND up.project_id = :projectId";
 }
