@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Email;
@@ -55,6 +56,12 @@ public class User {
 	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinTable(name = "user_skill", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "skill_id"))
 	private Set<Skill> skills;
+	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinTable(name = "user_projects", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "project_id"))
+	private Set<Project> myProjects;
+	@OneToMany
+	@JoinTable(name = "project_creator")
+	private Set<Project> myCreatedProjects;
 
 	public Boolean isAdmin() {
 		Boolean b = this.getRoles().stream().filter(role -> role.getName().equals("ADMIN")).collect(Collectors.toList()).size() > 0;
