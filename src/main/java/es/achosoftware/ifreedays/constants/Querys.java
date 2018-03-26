@@ -19,7 +19,7 @@ public class Querys {
 
 	public static final String FIND_VACATIONS_BY_USER_ID = "select * from vacation v where v.user_id = :userId";
 	
-	public static final String FIND_PROJECTS_BY_CREATOR = "select * from projects p where p.creator_user_id = :userId";
+	public static final String FIND_PROJECTS_BY_CREATOR = "select p.* from projects p where p.creator_user_id = :userId";
 	
 	public static final String FIND_USERS_BY_PROJECT_ID = "select u.* from user u" + " inner join user_projects up on (up.user_id = u.user_id) " + " where up.project_id = :projectId";
 
