@@ -1,47 +1,43 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-	<title>Login</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/mdb.min.css" rel="stylesheet">
-    <link href="/css/style.css" rel="stylesheet">
-<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
-</head>
+	<head>
+		<title>Login</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/css/mdb.min.css" rel="stylesheet">
+		<link href="/css/style.css" rel="stylesheet">
+		<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+	</head>
 
 <body>
-<a style="margin-bottom: 10%" th:href="@{/registration}" class="btn btn-md btn-warning btn-block">Go To Registration Page</a>
-	
-	<div class="container">
+	<a style="margin-bottom: 10%" th:href="@{/registration}" class="btn btn-md btn-warning btn-block">Go To Registration Page</a>
 
-                      
+	<div class="container">
 		<form action="/login" method="POST" class="form-signin">
-			 <p class="h4 text-center mb-4">Sign in</p>
-			 <div class="md-form">
-        <i class="fa fa-envelope prefix grey-text"></i>
-        <input type="email" id="materialFormLoginEmailEx" name="email" class="form-control">
-        <label for="materialFormLoginEmailEx">Your email</label>
-    </div>
-    <div class="md-form">
-        <i class="fa fa-lock prefix grey-text"></i>
-        <input type="password" name="password" id="materialFormLoginPasswordEx" class="form-control">
-        <label for="materialFormLoginPasswordEx">Your password</label>
-    </div>
-    <div class="text-center mt-4">
-        <button class="btn btn-default" type="submit">Login</button>
-    </div>
-				
+			<p class="h4 text-center mb-4">Sign in</p>
+			
+			<div class="md-form">
+				<i class="fa fa-envelope prefix grey-text"></i> <input type="email" id="materialFormLoginEmailEx" name="email" class="form-control">
+				<label for="materialFormLoginEmailEx">Your email</label>
+			</div>
+			
+			<div class="md-form">
+				<i class="fa fa-lock prefix grey-text"></i> <input type="password" name="password" id="materialFormLoginPasswordEx" class="form-control"><label for="materialFormLoginPasswordEx">Your password</label>
+			</div>
+			<div class="text-center mt-4">
+				<button class="btn btn-default" type="submit">Login</button>
+			</div>
+
 			<div align="center" th:if="${param.error}">
 				<p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
 			</div>
-<!-- 			<button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button> -->
 		</form>
 	</div>
+	
 	<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
-    	<script type="text/javascript" src="/js/popper.min.js"></script>
-    	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-    	<script type="text/javascript" src="/js/mdb.min.js"></script>
+	<script type="text/javascript" src="/js/popper.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/mdb.min.js"></script>
 </body>
 </html>
