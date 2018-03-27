@@ -28,11 +28,11 @@ public class Querys {
 			+ "on (us.skill_id = s.skill_id) inner join user_projects up on (up.user_id = us.user_id)"
 			+ "where up.project_id = :projectId AND up.user_id = us.user_id";
 
-	private static final String VACATIONS_FOR_SKILL_AND_FOR_PROJECT = "select v.* from vacation v"
+	public static final String VACATIONS_FOR_SKILL_AND_FOR_PROJECT = "select v.* from vacation v"
 			+ " inner join user_skill us on (us.user_id = v.user_id)"
 			+ " inner join user_projects up on (up.user_id = us.user_id)"
 			+ " where us.skill_id = :skillId AND up.project_id = :projectId";
-	private static final String FIND_CALENDAR_BY_SKILL_AND_FOR_PROJECT_AND_DATE_ORDER_BY_DAY_ASC = VACATIONS_FOR_SKILL_AND_FOR_PROJECT
+	public static final String FIND_CALENDAR_BY_SKILL_AND_FOR_PROJECT_AND_DATE_ORDER_BY_DAY_ASC = VACATIONS_FOR_SKILL_AND_FOR_PROJECT
 			+ " and MONTH(v.day) = :month" + " and YEAR(v.day) = :year" + ORDER_BY_V_DAY_ASC;
 
 	public static final String FIND_CALENDAR_BY_SKILL_BY_PROJECT_ORDER_BY_DAY_ASC = VACATIONS_FOR_SKILL_AND_FOR_PROJECT
@@ -41,4 +41,6 @@ public class Querys {
 	public static final String FIND_VACATIONS_BY_USER_ID_AND_BY_PROJECT_ID = "select v.* from vacation v"
 			+ "inner join user_projects up on (up.user_id = v.user_id)"
 			+ "where v.user_id = :userId AND up.project_id = :projectId";
+	public static final String SELECT_USER_SKILLS_BY_PROJECT = "select * from user u"
+			+ " inner join user_skill us on (u.user_id = us.user_id)" + " inner join user_projects up on (u.user_id = up.user_id)" + " where us.skill_id = :skillId AND up.project_id = :projectId";
 }
