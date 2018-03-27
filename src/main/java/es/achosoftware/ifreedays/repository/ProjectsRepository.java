@@ -11,6 +11,7 @@ import es.achosoftware.ifreedays.model.Project;
 public interface ProjectsRepository extends JpaRepository<Project, Integer>{
 	
 	List<Project> findProjectsByUserId(int userId);
+	List<Project> findProjectsByCreatorId(int creatorId);
 	
 	
 
