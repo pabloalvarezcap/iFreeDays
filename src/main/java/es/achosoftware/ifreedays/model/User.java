@@ -1,8 +1,10 @@
 package es.achosoftware.ifreedays.model;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -62,6 +64,52 @@ public class User {
 	@OneToMany
 	@JoinTable(name = "project_creator")
 	private Set<Project> myCreatedProjects;
+	private List<UserSkillProject> userSkillproject;
+
+	
+	
+	public User() {
+		
+	}
+	
+	public User(int id, String email, String password, String name, String lastName, int active, Set<Role> roles,
+			Set<Skill> skills, Set<Project> myProjects, Set<Project> myCreatedProjects) {
+		this.id = id;
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.lastName = lastName;
+		this.active = active;
+		this.roles = roles;
+		this.skills = skills;
+		this.myProjects = myProjects;
+		this.myCreatedProjects = myCreatedProjects;
+	}
+
+
+	public Set<Project> getMyProjects() {
+		return myProjects;
+	}
+
+	public void setMyProjects(Set<Project> myProjects) {
+		this.myProjects = myProjects;
+	}
+
+	public Set<Project> getMyCreatedProjects() {
+		return myCreatedProjects;
+	}
+
+	public void setMyCreatedProjects(Set<Project> myCreatedProjects) {
+		this.myCreatedProjects = myCreatedProjects;
+	}
+
+	public List<UserSkillProject> getUserSkillproject() {
+		return userSkillproject;
+	}
+
+	public void setUserSkillproject(List<UserSkillProject> userSkillproject) {
+		this.userSkillproject = userSkillproject;
+	}
 
 	public Boolean isAdmin() {
 		Boolean b = this.getRoles().stream().filter(role -> role.getName().equals("ADMIN")).collect(Collectors.toList()).size() > 0;
