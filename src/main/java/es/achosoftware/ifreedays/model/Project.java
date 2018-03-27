@@ -30,6 +30,17 @@ public class Project {
 	@ManyToOne
 	@JoinColumn()
 	private User creator;
+	
+	public Project() {}
+	
+	
+
+	public Project(String name, User creator) {
+		this.name = name;
+		this.creator = creator;
+	}
+
+
 
 	public int getId() {
 		return id;
