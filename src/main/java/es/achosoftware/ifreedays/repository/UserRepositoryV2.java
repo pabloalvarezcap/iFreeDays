@@ -16,4 +16,5 @@ public interface UserRepositoryV2 extends JpaRepository<User, Long> {
 	User findById(Integer id);
 //	@Query(nativeQuery = true, value = Querys.SELECT_USER_SKILLS_BY_PROJECT)
 //	List<User> findBySkills(@Param("skillId") Integer id, @Param("projectId") Integer Pid);
+
 }

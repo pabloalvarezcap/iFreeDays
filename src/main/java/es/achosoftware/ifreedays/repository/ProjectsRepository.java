@@ -14,9 +14,10 @@ import es.achosoftware.ifreedays.model.Skill;
 @Repository("projectsRepository")
 public interface ProjectsRepository extends JpaRepository<Project, Integer>{
 	
+
 	@Query(nativeQuery = true, value = Querys.FIND_USERS_BY_PROJECT_ID)
 	List<Project> findUsersByProjectId(@Param("projectId") int projectId);
 	@Query(nativeQuery = true, value = Querys.FIND_SKILLS_BY_PROJECT_AND_USER)
 	List<Skill> findSkillsByProjectAndUserId(@Param("projectId") int projectId, @Param("userId") int userId);
-	
+
 }
