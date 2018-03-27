@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import es.achosoftware.ifreedays.constants.Querys;
 import es.achosoftware.ifreedays.model.Vacation;
 
-@Repository("vacationRepository")
+@Repository("vacationRepositoryV2")
 public interface VacationRepositoryV2 extends JpaRepository<Vacation, Integer> {
 	
 	Vacation findByUserId(int userId);
