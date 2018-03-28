@@ -62,7 +62,7 @@ public class CreateProjectController {
 //		project.setCreator(user);
 //		project.setUsers(users);
 //		project.setId(300);
-		
+		project.setSkills(skills);
 		Project projec = projectsRepository.save(project);
 		USP.setProject(projec);
 		USP.setSkill(skills);

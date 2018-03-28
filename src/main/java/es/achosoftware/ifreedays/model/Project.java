@@ -36,6 +36,9 @@ public class Project {
 	@JoinTable(name="project_creator", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "creator_id"))
 	@JoinColumn(name="creator_user_id")
 	private User creator;
+	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinTable(name = "project_skills", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "skill_id"))
+	private Set<Skill> skills;
 	
 	public Project() {}
 	
@@ -45,6 +48,20 @@ public class Project {
 		this.name = name;
 		this.creator = creator;
 //		this.users = users;
+	}
+
+
+	
+	
+
+	public Set<Skill> getSkills() {
+		return skills;
+	}
+
+
+
+	public void setSkills(Set<Skill> skills) {
+		this.skills = skills;
 	}
 
 
