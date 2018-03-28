@@ -47,5 +47,7 @@ public class Querys {
 
 	
 	public static final String FIND_SKILLS_BY_PROJECT_AND_USER = "select s.* from skill s inner join user_skill_project ups on ups.id_user = :userId and ups.id_project = :projectId where s.skill_id = ups.id_skill";
+	
+	public static final String FIND_USERS_BY_SKILL_AND_PROJECT = "select u.* from user u inner join user_skill_project usp on u.user_id = usp.id_user and usp.id_project = :projectId where usp.id_skill = :skillId;";
 
 }
