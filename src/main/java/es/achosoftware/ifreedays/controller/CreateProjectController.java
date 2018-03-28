@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,7 +36,7 @@ public class CreateProjectController {
 	
 	@PostMapping("/admin/submitProject")
 	@ResponseBody
-	public List<User> submitProject(Principal principal, @RequestParam("name") String name) {
+	public List<String> submitProject(Principal principal, @RequestParam("name") String name) {
 		User user = userRepository.findByEmail(principal.getName()); 
 		System.err.println("\n\n\n\n" + user.getEmail() + "\n\n\n\n");
 		Set<User> users = new HashSet<>();
@@ -55,8 +56,8 @@ public class CreateProjectController {
 
 		Project projec = projectsRepository.save(project);
 //		userRepository.save(user);
-		System.out.println(projec.getId());
+		System.out.println(userRepository.findByProjectId(projec.getId()));
 //		List<Skill> skills = projectsRepository.findSkillsByProjectAndUserId(1, user.getId());
-		return userRepository.findByProjectId(projec.getId());
+		return userRepository.findByProjectId(projec.getId()).stream().map(u -> u.toString()).collect(Collectors.toList());
 	}
 }
