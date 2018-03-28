@@ -3,7 +3,6 @@ package es.achosoftware.ifreedays.model;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Comparator;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -15,10 +14,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "vacation")
-public class Vacation implements Comparable {
+public class Vacation implements Comparable<Vacation> {
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	// @Id
 	@Column(name = "user_id")
@@ -27,7 +26,7 @@ public class Vacation implements Comparable {
 	private Date day;
 	@Column(name = "skill_id")
 	private int skillId;
-	
+
 	public Vacation() {
 	}
 
@@ -79,16 +78,11 @@ public class Vacation implements Comparable {
 		LocalDate a = getDay().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		return a.format(formatter);
-		
+
 	}
 
 	@Override
-	public int compareTo(Object arg0) {
-		System.out.println("\n\\nGUUGU");
-		if (arg0 != null) {
-			if (arg0.getClass().equals(this.getClass()))
-				return this.getDay().compareTo(((Vacation) arg0).getDay());
-		}
-		return -1;
+	public int compareTo(Vacation arg0) {
+		return this.getDay().compareTo(arg0.getDay());
 	}
 }

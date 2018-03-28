@@ -1,7 +1,6 @@
 package es.achosoftware.ifreedays.model;
 
 import java.text.DateFormatSymbols;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;

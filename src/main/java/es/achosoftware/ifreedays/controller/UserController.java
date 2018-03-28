@@ -38,7 +38,7 @@ public class UserController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
 		modelAndView.addObject("isAdmin", user.isAdmin());
-		modelAndView.addObject("skills", new ArrayList());
+		modelAndView.addObject("skills", new ArrayList<Skill>());
 		if (!msg.equals(""))
 			modelAndView.addObject("msg", msg);
 		else
@@ -57,7 +57,7 @@ public class UserController {
 		modelAndView.addObject("isAdmin", user.isAdmin());
 //		modelAndView.setViewName("employees/list");
 		modelAndView.setViewName("redirect:/admin/employees/");
-		modelAndView.addObject("skills", new ArrayList());
+		modelAndView.addObject("skills", new ArrayList<Skill>());
 		modelAndView.addObject("employees", userService.listUsers());
 		modelAndView.addObject("msg", "The user «" + user.getName() + ", " + user.getLastName() + "» has been deleted.");
 		return modelAndView;
@@ -88,7 +88,8 @@ public class UserController {
 		User user = userService.findUserById(id);
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		modelAndView.addObject("isAdmin", user.isAdmin());
+		User _user = userRepository.findByEmail(auth.getName());
+		modelAndView.addObject("isAdmin", _user.isAdmin());
 		modelAndView.addObject("employees", userService.listUsers());
 		modelAndView.setViewName("employees/list");
 		if (skills.size() == 0) {

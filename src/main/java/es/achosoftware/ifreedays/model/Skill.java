@@ -7,16 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "skill")
-public class Skill implements Comparable {
+public class Skill implements Comparable<Skill> {
 
 	@Id
 	@GeneratedValue()
@@ -64,12 +62,9 @@ public class Skill implements Comparable {
 	}
 
 	@Override
-	public int compareTo(Object arg0) {
-		if (arg0.getClass().equals(this.getClass())) {
-			Skill s = (Skill) arg0;
-			return this.getName().compareTo(s.getName());
-		}
-		return 0;
+	public int compareTo(Skill arg0) {
+		return this.getName().compareTo(arg0.getName());
 	}
+
 
 }

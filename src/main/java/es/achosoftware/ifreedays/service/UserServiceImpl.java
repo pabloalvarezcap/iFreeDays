@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> listUsersWithSkill(Integer id) {
-		return userRepository.findBySkills(id);
+		return userRepository.findBySkillId(id);
 	}
 
 	@Override

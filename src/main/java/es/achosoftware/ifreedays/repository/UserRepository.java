@@ -13,7 +13,7 @@ import es.achosoftware.ifreedays.model.User;
 @Repository("userRepository")
 public interface UserRepository extends JpaRepository<User, Long> {
 	User findByEmail(String email);
-	User findById(Integer id);
+	User findById(int id);
 	@Query(nativeQuery = true, value = Querys.SELECT_USER_SKILLS)
-	List<User> findBySkills(@Param("skillId") Integer id);
+	List<User> findBySkillId(@Param("skillId") Integer id);
 }
