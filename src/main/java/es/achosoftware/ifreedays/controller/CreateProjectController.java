@@ -2,6 +2,7 @@ package es.achosoftware.ifreedays.controller;
 
 import java.security.Principal;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 import es.achosoftware.ifreedays.model.Project;
 import es.achosoftware.ifreedays.model.User;
 import es.achosoftware.ifreedays.repository.ProjectsRepository;
-import es.achosoftware.ifreedays.repository.UserRepository;
+import es.achosoftware.ifreedays.repository.UserRepositoryV2;
 
 @Controller
 public class CreateProjectController {
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserRepositoryV2 userRepository;
 	@Autowired
 	private ProjectsRepository projectsRepository;
 	
@@ -34,7 +35,7 @@ public class CreateProjectController {
 	
 	@PostMapping("/admin/submitProject")
 	@ResponseBody
-	public String submitProject(Principal principal, @RequestParam("name") String name) {
+	public List<User> submitProject(Principal principal, @RequestParam("name") String name) {
 		User user = userRepository.findByEmail(principal.getName()); 
 		System.err.println("\n\n\n\n" + user.getEmail() + "\n\n\n\n");
 		Set<User> users = new HashSet<>();
@@ -52,10 +53,10 @@ public class CreateProjectController {
 //		project.setUsers(users);
 //		project.setId(300);
 
-		projectsRepository.save(project);
+		Project projec = projectsRepository.save(project);
 //		userRepository.save(user);
-		String s = "";
+		System.out.println(projec.getId());
 //		List<Skill> skills = projectsRepository.findSkillsByProjectAndUserId(1, user.getId());
-		return s;
+		return userRepository.findByProjectId(projec.getId());
 	}
 }
