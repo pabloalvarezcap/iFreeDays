@@ -2,16 +2,17 @@ package es.achosoftware.ifreedays.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Length;
@@ -21,16 +22,19 @@ import org.hibernate.validator.constraints.Length;
 @Table(name="projects")
 public class Project {
 	@Id
-	@GeneratedValue()
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "project_id")
 	private int id;
 	@Length(max = 100, message = "*Project's name cannot be longer than 100 characters")
 	@Column(name = "name")
 	private String name;
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "myProjects")
+//	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "myProjects")
+	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinTable(name = "user_projects", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private Set<User> users;
 	@ManyToOne
-	@JoinColumn()
+	@JoinTable(name="project_creator", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "creator_id"))
+	@JoinColumn(name="creator_user_id")
 	private User creator;
 	
 	public Project() {}
@@ -40,6 +44,7 @@ public class Project {
 	public Project(String name, User creator) {
 		this.name = name;
 		this.creator = creator;
+//		this.users = users;
 	}
 
 

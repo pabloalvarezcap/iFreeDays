@@ -23,7 +23,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Transient;
 
-import es.achosoftware.ifreedays.service.UserSkillProjectService;
+//import es.achosoftware.ifreedays.service.UserSkillProjectService;
 
 /**
  * @author Francisco
@@ -60,13 +60,12 @@ public class User {
 	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinTable(name = "user_skill", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "skill_id"))
 	private Set<Skill> skills;
-	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
-	@JoinTable(name = "user_projects", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "project_id"))
-	private Set<Project> myProjects;
-	@OneToMany
-	@JoinTable(name = "project_creator")
-	private Set<Project> myCreatedProjects;
-	private List<UserSkillProject> userSkillproject;
+//	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
+//	@JoinTable(name = "user_projects", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "project_id"))
+//	private Set<Project> myProjects;
+//	@OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
+//	private Set<Project> myCreatedProjects;
+//	private List<UserSkillProject> userSkillproject;
 
 	
 	
@@ -75,7 +74,7 @@ public class User {
 	}
 	
 	public User(int id, String email, String password, String name, String lastName, int active, Set<Role> roles,
-			Set<Skill> skills, Set<Project> myProjects, Set<Project> myCreatedProjects) {
+			Set<Skill> skills) {
 		this.id = id;
 		this.email = email;
 		this.password = password;
@@ -84,40 +83,40 @@ public class User {
 		this.active = active;
 		this.roles = roles;
 		this.skills = skills;
-		this.myProjects = myProjects;
-		this.myCreatedProjects = myCreatedProjects;
+//		this.myProjects = myProjects;
+//		this.myCreatedProjects = myCreatedProjects;
 	}
-	
-	@PostConstruct
-	public void setUpUSP() {
-		UserSkillProjectService usps = new UserSkillProjectService();
-		this.myProjects.stream().forEach(p -> usps.setupUSP(this.id, p.getId()));
-	}
+//	
+//	@PostConstruct
+//	public void setUpUSP() {
+//		UserSkillProjectService usps = new UserSkillProjectService();
+//		this.myProjects.stream().forEach(p -> usps.setupUSP(this.id, p.getId()));
+//	}
 
 
-	public Set<Project> getMyProjects() {
-		return myProjects;
-	}
+//	public Set<Project> getMyProjects() {
+//		return myProjects;
+//	}
+//
+//	public void setMyProjects(Set<Project> myProjects) {
+//		this.myProjects = myProjects;
+//	}
 
-	public void setMyProjects(Set<Project> myProjects) {
-		this.myProjects = myProjects;
-	}
+//	public Set<Project> getMyCreatedProjects() {
+//		return myCreatedProjects;
+//	}
+//
+//	public void setMyCreatedProjects(Set<Project> myCreatedProjects) {
+//		this.myCreatedProjects = myCreatedProjects;
+//	}
 
-	public Set<Project> getMyCreatedProjects() {
-		return myCreatedProjects;
-	}
-
-	public void setMyCreatedProjects(Set<Project> myCreatedProjects) {
-		this.myCreatedProjects = myCreatedProjects;
-	}
-
-	public List<UserSkillProject> getUserSkillproject() {
-		return userSkillproject;
-	}
-
-	public void setUserSkillproject(List<UserSkillProject> userSkillproject) {
-		this.userSkillproject = userSkillproject;
-	}
+//	public List<UserSkillProject> getUserSkillproject() {
+//		return userSkillproject;
+//	}
+//
+//	public void setUserSkillproject(List<UserSkillProject> userSkillproject) {
+//		this.userSkillproject = userSkillproject;
+//	}
 
 	public Boolean isAdmin() {
 		Boolean b = this.getRoles().stream().filter(role -> role.getName().equals("ADMIN")).collect(Collectors.toList()).size() > 0;
