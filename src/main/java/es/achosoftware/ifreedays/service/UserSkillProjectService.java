@@ -19,7 +19,6 @@ public class UserSkillProjectService {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired

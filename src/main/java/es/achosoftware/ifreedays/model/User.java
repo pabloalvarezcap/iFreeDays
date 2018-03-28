@@ -23,6 +23,8 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Transient;
 
+import es.achosoftware.ifreedays.service.UserSkillProjectService;
+
 /**
  * @author Francisco
  *
@@ -84,6 +86,12 @@ public class User {
 		this.skills = skills;
 		this.myProjects = myProjects;
 		this.myCreatedProjects = myCreatedProjects;
+	}
+	
+	@PostConstruct
+	public void setUpUSP() {
+		UserSkillProjectService usps = new UserSkillProjectService();
+		this.myProjects.stream().forEach(p -> usps.setupUSP(this.id, p.getId()));
 	}
 
 
