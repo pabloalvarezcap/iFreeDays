@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Email;
@@ -57,12 +58,16 @@ public class User {
 	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinTable(name = "user_skill", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "skill_id"))
 	private Set<Skill> skills;
+	@OneToMany
+	@JoinTable(name="USER_USP", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "USP_id"))
+	@JoinColumn(name="UserUsp_id")
+	private Set<UserSkillProject> userSkillproject;
 //	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
 //	@JoinTable(name = "user_projects", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "project_id"))
 //	private Set<Project> myProjects;
 //	@OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
 //	private Set<Project> myCreatedProjects;
-//	private List<UserSkillProject> userSkillproject;
+	
 
 	
 	
