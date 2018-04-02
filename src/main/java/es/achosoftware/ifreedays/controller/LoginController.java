@@ -23,22 +23,7 @@ public class LoginController {
 
 	@RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
 	public ModelAndView login() {
-		ModelAndView modelAndView = new ModelAndView();
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (!auth.getName().equals("anonymousUser")) {
-			if (auth.isAuthenticated()) {
-				User user = userService.findUserByEmail(auth.getName());
-				if (user.isAdmin()) {
-					modelAndView.setViewName("redirect:admin/home");
-					return modelAndView;
-				} else {
-					modelAndView.setViewName("redirect:user/home");
-					return modelAndView;
-				}
-			}
-		}
-		modelAndView.setViewName("login");
-		return modelAndView;
+		return checkType();
 	}
 
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
@@ -72,13 +57,23 @@ public class LoginController {
 	}
 
 	@GetMapping("/checkType")
-	public String checkType() {
+	public ModelAndView checkType() {
+		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userService.findUserByEmail(auth.getName());
-		if (user.isAdmin())
-			return "redirect:admin/home";
-		else
-			return "redirect:user/home";
+		if (!auth.getName().equals("anonymousUser")) {
+			if (auth.isAuthenticated()) {
+				User user = userService.findUserByEmail(auth.getName());
+				if (user.isAdmin()) {
+					modelAndView.setViewName("redirect:admin/home");
+					return modelAndView;
+				} else {
+					modelAndView.setViewName("redirect:user/home");
+					return modelAndView;
+				}
+			}
+		}
+		modelAndView.setViewName("login");
+		return modelAndView;
 	}
 
 	@RequestMapping(value = "/admin/home", method = RequestMethod.GET)

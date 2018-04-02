@@ -40,17 +40,17 @@ public class Security extends WebSecurityConfigurerAdapter {
 				.antMatchers("/registration").permitAll().antMatchers("/console/**").permitAll()
 				.antMatchers("/skills/**").authenticated().antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
 				.authenticated().and().csrf().disable().formLogin().loginPage("/login").failureUrl("/login?error=true")
-				.defaultSuccessUrl("/checkType").usernameParameter("email").passwordParameter("password").and().logout()
+				.defaultSuccessUrl("/").usernameParameter("email").passwordParameter("password").and().logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/").and()
 				.exceptionHandling().accessDeniedPage("/access-denied");
 
-		http.authorizeRequests().antMatchers("/").permitAll().antMatchers("/login").permitAll()
-				.antMatchers("/registration").permitAll().antMatchers("/console/**").permitAll()
-				.antMatchers("/skills/**").authenticated().antMatchers("/user/**").hasAuthority("USER").anyRequest()
-				.authenticated().and().csrf().disable().formLogin().loginPage("/login").failureUrl("/login?error=true")
-				.defaultSuccessUrl("/checkType").usernameParameter("email").passwordParameter("password").and().logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/").and()
-				.exceptionHandling().accessDeniedPage("/access-denied");
+//		http.authorizeRequests().antMatchers("/").permitAll().antMatchers("/login").permitAll()
+//				.antMatchers("/registration").permitAll().antMatchers("/console/**").permitAll()
+//				.antMatchers("/skills/**").authenticated().antMatchers("/user/**").hasAuthority("USER").anyRequest()
+//				.authenticated().and().csrf().disable().formLogin().loginPage("/login").failureUrl("/login?error=true")
+//				.defaultSuccessUrl("/checkType").usernameParameter("email").passwordParameter("password").and().logout()
+//				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/").and()
+//				.exceptionHandling().accessDeniedPage("/access-denied");
 
 //		http.authorizeRequests().antMatchers("/skills/**").hasAuthority("ADMIN").anyRequest().authenticated().and()
 //				.csrf().disable().formLogin().loginPage("/login").failureUrl("/login?error=true")
