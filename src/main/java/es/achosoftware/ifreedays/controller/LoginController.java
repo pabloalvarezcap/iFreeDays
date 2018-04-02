@@ -25,7 +25,7 @@ public class LoginController {
 	public ModelAndView login() {
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth.getName() != "anonymousUser") {
+		if (!auth.getName().equals("anonymousUser")) {
 			if (auth.isAuthenticated()) {
 				User user = userService.findUserByEmail(auth.getName());
 				if (user.isAdmin()) {
@@ -58,7 +58,7 @@ public class LoginController {
 			bindingResult.rejectValue("email", "error.user",
 					"There is already a user registered with the email provided");
 		}
-		
+
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("registration");
 		} else {
@@ -67,7 +67,7 @@ public class LoginController {
 			modelAndView.addObject("user", new User());
 			modelAndView.setViewName("registration");
 		}
-		
+
 		return modelAndView;
 	}
 
