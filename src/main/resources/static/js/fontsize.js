@@ -1,12 +1,12 @@
 
-function iterateAll(element, style) {
+function iterateAll(element, size) {
 
 var items = element.getElementsByTagName("*");
 for (var i = items.length; i--;) {
     if (items[i].hasChildNodes()) {
-		iterateAll(items[i], style);
+		iterateAll(items[i], size);
     }
-	items[i].style = style;
+	items[i].style["font-size"] = size;
 }
 
 }
@@ -45,13 +45,13 @@ function setCookie(cname, cvalue, exdays) {
 		
 		if ($("#bigfontsize")[0].value == "on") { 
 			$("#bigfontsize")[0].checked = "true";
-			iterateAll($("body")[0], "font-size: 1.6rem");
+			iterateAll($("body")[0], "1.6rem");
 		}
 		
     	$(document).ready(function () {
     		$("#bigfontsize").on("click", function() {
     			if (this.value == "off") {
-    				iterateAll($("body")[0], "font-size: 1.6rem");
+    				iterateAll($("body")[0], "1.6rem");
     				setCookie("bigfontsize", "on", 900);
     				this.value = "on";
     			}
