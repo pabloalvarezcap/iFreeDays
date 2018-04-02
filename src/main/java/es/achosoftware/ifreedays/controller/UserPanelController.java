@@ -103,7 +103,7 @@ public class UserPanelController {
 		LocalDate _endDate = LocalDate.parse(endDate);
 		if(ChronoUnit.DAYS.between(_startDate, _endDate) >= 60) {
 			ModelAndView modelAndView = new ModelAndView();
-			modelAndView.setViewName("redirect:/user/error");
+			modelAndView.setViewName("forward:/user/error");
 			return modelAndView;
 		}
 		
