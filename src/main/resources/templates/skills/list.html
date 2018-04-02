@@ -6,7 +6,7 @@
 <title>Skills Page</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/mdb.css" rel="stylesheet">
+    <link href="/css/mdb.min.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
 <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
         <style>
@@ -50,7 +50,7 @@
     			</button>
     			
     			<div class="collapse navbar-collapse" id="basicExampleNav">
-		        	<ul class="navbar-nav mr-auto">
+		        	<ul class="navbar-nav">
 			            <li class="nav-item" th:if="${isAdmin}"><a class="nav-link" href="/admin/home">Home</a></li>
 						<li class="nav-item" th:unless="${isAdmin}"><a class="nav-link" href="/user/home">Home</a></li>
 						<li class="nav-item"><a class="nav-link" href="/skills">List of skills</a></li>
@@ -59,6 +59,7 @@
 						<li class="nav-item"><a class="nav-link" href="/user/requestVacation">Request vacation</a></li>
 						<li class="nav-item"><a class="nav-link" href="/user/myVacations">My vacations</a></li>
 	        		</ul>
+	        		<div class="mt-auto" style="margin-left: 1rem"><label class="navbar-link" for="bigfontsize"><input type="checkbox" class="filled-in" id="bigfontsize">Use big font size</label></div>
         			<ul class="navbar-nav ml-auto">
 	        			<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
 	        		</ul>
@@ -126,4 +127,5 @@
 				$('#buttonUsers').removeAttr('disabled');
 			});
 </script>
+<script type="text/javascript" src="/js/fontsize.js"></script>
 </html>
