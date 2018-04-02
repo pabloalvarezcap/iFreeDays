@@ -1,18 +1,4 @@
 
-function iterateAll(element, size) {
-
-var items = element.getElementsByTagName("*");
-for (var i = items.length; i--;) {
-    if (items[i].hasChildNodes()) {
-		iterateAll(items[i], size);
-    }
-	items[i].style["font-size"] = size;
-}
-
-}
-
-
-
 function setCookie(cname, cvalue, exdays) {
     	    var d = new Date();
     	    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -45,18 +31,18 @@ function setCookie(cname, cvalue, exdays) {
 		
 		if ($("#bigfontsize")[0].value == "on") { 
 			$("#bigfontsize")[0].checked = "true";
-			iterateAll($("body")[0], "1.6rem");
+			$("body").find("*").each(function () {this.style["font-size"] = "1.6rem"});
 		}
 		
     	$(document).ready(function () {
     		$("#bigfontsize").on("click", function() {
     			if (this.value == "off") {
-    				iterateAll($("body")[0], "1.6rem");
+    				$("body").find("*").each(function () {this.style["font-size"] = "1.6rem"});
     				setCookie("bigfontsize", "on", 900);
     				this.value = "on";
     			}
     			else {
-    				iterateAll($("body")[0], "");
+    				$("body").find("*").each(function () {this.style["font-size"] = ""});
     				setCookie("bigfontsize", "off", 900);
     				this.value = "off";
     			}
