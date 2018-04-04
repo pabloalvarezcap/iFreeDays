@@ -40,7 +40,7 @@ public class UserController {
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
-		modelAndView.addObject("projects",projectRepository.findProjectsByCreatorId(user.getId()));
+		modelAndView.addObject("projects", projectRepository.findProjectsByCreatorId(user.getId()));
 		
 		modelAndView.addObject("isAdmin", user.isAdmin());
 		modelAndView.addObject("userName",

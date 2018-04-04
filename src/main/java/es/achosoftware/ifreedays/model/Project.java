@@ -33,7 +33,7 @@ public class Project {
 	@JoinTable(name = "user_projects", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private Set<User> users;
 	@ManyToOne
-	@JoinTable(name="project_creator", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "creator_id"))
+//	@JoinTable(name="project_creator", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "creator_user_id"))
 	@JoinColumn(name="creator_user_id")
 	private User creator;
 	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.MERGE)
