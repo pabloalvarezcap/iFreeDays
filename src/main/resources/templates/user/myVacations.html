@@ -61,8 +61,8 @@
 						<tr >
 							<td data-th-text="${month.getMonthForInt(month.getMonth())}" class="btn btn-block bg-primary"></td>
 							<th:block data-th-each="day : ${month.getDays()}" th:switch="${day.getIsVacation()}">
-								<td th:case="false" class="bg-info"  data-th-text="${day.getDay()}" />
-								<td th:case="true" class="bg-success"  data-th-text="${day.getDay()}" />
+								<td th:case="false" class="bg-info waves-effect"  data-th-text="${day.getDay()}" />
+								<td th:case="true" class="bg-success waves-effect"  data-th-text="${day.getDay()}" />
 							</th:block>
 						</tr>
 						</th:block>
