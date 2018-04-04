@@ -24,9 +24,9 @@ public class Querys {
 	public static final String FIND_USERS_BY_PROJECT_ID = "select u.* from user u"
 			+ " inner join user_projects up on (up.user_id = u.user_id) " + " where up.project_id = :projectId";
 
-	public static final String FIND_SKILLS_BY_PROJECT_ID = "select s.* from skill s inner join user_skill us"
+	public static final String FIND_SKILLS_BY_PROJECT_ID = "select s.* from skill s inner join user_skill us "
 			+ "on (us.skill_id = s.skill_id) inner join user_projects up on (up.user_id = us.user_id)"
-			+ "where up.project_id = :projectId AND up.user_id = us.user_id";
+			+ " where up.project_id = :projectId AND up.user_id = us.user_id";
 
 	public static final String VACATIONS_FOR_SKILL_AND_FOR_PROJECT = "select v.* from vacation v"
 			+ " inner join user_skill us on (us.user_id = v.user_id)"
