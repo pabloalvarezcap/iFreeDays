@@ -7,25 +7,26 @@
 		<link href="/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/css/mdb.min.css" rel="stylesheet">
 		<link href="/css/style.css" rel="stylesheet">
+		<style id="x_css"></style>
 	</head>
 
 <body>
-	<a style="margin-bottom: 10%" th:href="@{/registration}" class="btn btn-md btn-warning btn-block">Go To Registration Page</a>
+	<a style="margin-bottom: 10%" th:href="@{/registration}" class="x btn btn-md btn-warning btn-block">Go To Registration Page</a>
 
-	<div class="container">
-		<form action="/login" method="POST" class="form-signin">
-			<p class="h4 text-center mb-4">Sign in</p>
+	<div class="x container">
+		<form action="/login" method="POST" class="x form-signin">
+			<p class="x h4 text-center mb-4">Sign in</p>
 			
-			<div class="md-form">
-				<i class="fa fa-envelope prefix grey-text"></i> <input type="email" id="materialFormLoginEmailEx" name="email" class="form-control">
+			<div class="x md-form">
+				<i class="x fa fa-envelope prefix grey-text"></i> <input type="email" id="materialFormLoginEmailEx" name="email" class="x form-control">
 				<label for="materialFormLoginEmailEx">Your email</label>
 			</div>
 			
-			<div class="md-form">
-				<i class="fa fa-lock prefix grey-text"></i> <input type="password" name="password" id="materialFormLoginPasswordEx" class="form-control"><label for="materialFormLoginPasswordEx">Your password</label>
+			<div class="x md-form">
+				<i class="x fa fa-lock prefix grey-text"></i> <input type="password" name="password" id="materialFormLoginPasswordEx" class="x form-control"><label for="materialFormLoginPasswordEx">Your password</label>
 			</div>
-			<div class="text-center mt-4">
-				<button class="btn btn-default" type="submit">Login</button>
+			<div class="x text-center mt-4">
+				<button class="x btn btn-default" type="submit">Login</button>
 			</div>
 
 			<div align="center" th:if="${param.error}">

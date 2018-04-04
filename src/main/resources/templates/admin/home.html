@@ -8,49 +8,50 @@
     <link href="/css/mdb.min.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
 <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+<style id="x_css"></style>
 </head>
 
 <body>
-	<div class="container">
-		<div class="panel-group" style="margin-top:2.5rem">
-			<nav class="navbar navbar-dark primary-color fixed-top navbar-expand-md">
-    			<a th:if="${isAdmin}" class="navbar-brand" href="/admin/home">iFreeDays - Vacations Admin</a>
-				<a th:unless="${isAdmin}" class="navbar-brand" href="/user/home">iFreeDays - Vacations Manager</a>
-    			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-		        	<span class="navbar-toggler-icon"></span>
+	<div class="x container">
+		<div class="x panel-group" style="margin-top:2.5rem">
+			<nav class="x navbar navbar-dark primary-color fixed-top navbar-expand-md">
+    			<a th:if="${isAdmin}" class="x navbar-brand" href="/admin/home">iFreeDays - Vacations Admin</a>
+				<a th:unless="${isAdmin}" class="x navbar-brand" href="/user/home">iFreeDays - Vacations Manager</a>
+    			<button class="x navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+		        	<span class="x navbar-toggler-icon"></span>
     			</button>
     			
-    			<div class="collapse navbar-collapse" id="basicExampleNav">
-		        	<ul class="navbar-nav">
-			            <li class="nav-item" th:if="${isAdmin}"><a class="nav-link" href="/admin/home">Home</a></li>
-						<li class="nav-item" th:unless="${isAdmin}"><a class="nav-link" href="/user/home">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="/skills">List of skills</a></li>
-						<li class="nav-item" th:if="${isAdmin}"><a class="nav-link" href="/admin/employees">List of employees</a></li>
-						<li class="nav-item"><a class="nav-link" href="/calendars/skills">Skills calendar view</a></li>
-						<li class="nav-item"><a class="nav-link" href="/user/requestVacation">Request vacation</a></li>
-						<li class="nav-item"><a class="nav-link" href="/user/myVacations">My vacations</a></li>
+    			<div class="x collapse navbar-collapse" id="basicExampleNav">
+		        	<ul class="x navbar-nav">
+			            <li class="x nav-item" th:if="${isAdmin}"><a class="x nav-link" href="/admin/home">Home</a></li>
+						<li class="x nav-item" th:unless="${isAdmin}"><a class="x nav-link" href="/user/home">Home</a></li>
+						<li class="x nav-item"><a class="x nav-link" href="/skills">List of skills</a></li>
+						<li class="x nav-item" th:if="${isAdmin}"><a class="x nav-link" href="/admin/employees">List of employees</a></li>
+						<li class="x nav-item"><a class="x nav-link" href="/calendars/skills">Skills calendar view</a></li>
+						<li class="x nav-item"><a class="x nav-link" href="/user/requestVacation">Request vacation</a></li>
+						<li class="x nav-item"><a class="x nav-link" href="/user/myVacations">My vacations</a></li>
 	        		</ul>
-	        		<div class="mt-auto" style="margin-left: 1rem"><label class="navbar-link" for="bigfontsize"><input type="checkbox" class="filled-in" id="bigfontsize">Use big font size</label></div>
-        			<ul class="navbar-nav ml-auto">
-	        			<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+	        		<div class="x mt-auto" style="margin-left: 1rem"><label class="x navbar-link" for="bigfontsize"><input type="checkbox" class="x filled-in" id="bigfontsize">Use big font size</label></div>
+        			<ul class="x navbar-nav ml-auto">
+	        			<li class="x nav-item"><a class="x nav-link" href="/logout">Logout</a></li>
 	        		</ul>
     			</div>
 			</nav>
 
 			
-					<div class="card card-body z-depth-3" style="margin-top: 5rem">	
-					<div class="panel panel-primary" style="margin-top: 1rem">
-				<div class="panel-heading" style="text-align:center">
+					<div class="x card card-body z-depth-3" style="margin-top: 5rem">	
+					<div class="x panel panel-primary" style="margin-top: 1rem">
+				<div class="x panel-heading" style="text-align:center">
 					<span th:utext="${userName}" ></span>
 				</div>
 				<br/>
-				<div class="panel-body" style="text-align:center">
+				<div class="x panel-body" style="text-align:center">
 					<img th:src="@{/images/beer.jpg}"
-						class="img-responsive center-block z-depth-5" width="400" height="400"
+						class="x img-responsive center-block z-depth-5" width="400" height="400"
 						alt="Beer" />
 						
 				</div>
-				<p class="admin-message-text text-center" style="margin-top: 3rem" th:utext="${adminMessage}"></p>
+				<p class="x admin-message-text text-center" style="margin-top: 3rem" th:utext="${adminMessage}"></p>
 			</div>
 		</div>
 </div>
