@@ -40,6 +40,19 @@ public class SkillController {
 		modelAndView.addObject("skills", skillService.listSkills());
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "/skills/{id}", method = RequestMethod.GET)
+	public ModelAndView listSkillsForProject(@PathVariable("id") Integer id) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String email = auth.getName();
+		User user = userService.findUserByEmail(email);
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("skills/list");
+		Boolean isAdmin = user.isAdmin();
+		modelAndView.addObject("isAdmin", isAdmin);
+		modelAndView.addObject("skills", skillService.listSkillsOfProjectId(id));
+		return modelAndView;
+	}
 
 	@RequestMapping(value = "/skills/users/{id}", method = RequestMethod.GET)
 	public ModelAndView listUsersWithSkill(@PathVariable("id") Integer id) {

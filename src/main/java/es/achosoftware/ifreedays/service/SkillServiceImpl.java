@@ -34,4 +34,9 @@ public class SkillServiceImpl implements SkillService {
 		return skillRepository.findById(id);
 	}
 
+	@Override
+	public List<Skill> listSkillsOfProjectId(Integer projectID) {
+		return skillRepository.listSkillsOfProjectId(projectID);
+	}
+
 }

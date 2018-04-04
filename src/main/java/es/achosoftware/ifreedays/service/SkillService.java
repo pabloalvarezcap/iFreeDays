@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 import es.achosoftware.ifreedays.constants.Querys;
 import es.achosoftware.ifreedays.model.Skill;
-import es.achosoftware.ifreedays.model.Vacation;
 
 public interface SkillService {
 	public Skill findSkillByName(String name);
@@ -15,5 +14,5 @@ public interface SkillService {
 	public List<Skill> listSkills();
 	public Skill findSkillById(Integer id);
 	@Query(nativeQuery = true, value = Querys.FIND_SKILLS_BY_PROJECT_ID)
-	List<Skill> listSkillsOfProjectId(@Param("projectId") Integer projectID);
+	public List<Skill> listSkillsOfProjectId(@Param("projectId") Integer projectID);
 }
