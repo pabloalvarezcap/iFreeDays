@@ -19,5 +19,8 @@ public interface ProjectsRepository extends JpaRepository<Project, Integer>{
 	List<Project> findUsersByProjectId(@Param("projectId") int projectId);
 	@Query(nativeQuery = true, value = Querys.FIND_SKILLS_BY_PROJECT_AND_USER)
 	List<Skill> findSkillsByProjectAndUserId(@Param("projectId") int projectId, @Param("userId") int userId);
+	@Query(nativeQuery = true, value = Querys.FIND_PROJECTS_BY_CREATOR)
+	List<Project> findProjectsByCreatorId(@Param("userId") int userId);
+	
 
 }
