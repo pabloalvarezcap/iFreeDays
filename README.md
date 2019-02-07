@@ -1,7 +1,6 @@
 # iFreeDays
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) 
 
-Security auditing tool, module-based, similar to [lynis](https://github.com/CISOfy/lynis), but developed with python and enthusiasm.
 
 ## Online demo
 http://myrandomthings.ml:8082 
